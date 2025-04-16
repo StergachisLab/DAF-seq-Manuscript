@@ -2,7 +2,7 @@
 
 import pysam
 
-bam_dir = '/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1'
+bam_dir = '../'
 
 in_bams = ['PS00627.m84046_240619_124816_s1.bc2073.ft.map-pb_corrected_realigned.bam',
            'PS00628.m84046_240619_124816_s1.bc2074.ft.map-pb_corrected_realigned.bam',
