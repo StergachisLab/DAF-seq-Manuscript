@@ -1,7 +1,0 @@
-# CTCF modules, use for ADJUSTED bed file
-modules:
-  - [0, 8] # mod 1a
-  - [8, 16] # mod 1b
-  - [16, 23] # mod 2
-  - [23, 29] # mod 3
-  - [29, 34] # mod 4
