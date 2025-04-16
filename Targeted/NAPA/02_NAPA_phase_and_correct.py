@@ -3,7 +3,7 @@
 import pysam
 import csv
 
-bam_name = '/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1/PS00626.m84046_240619_124816_s1.bc2072.ft.map-pb_corrected_realigned.bam'
+bam_name = '../data/PS00626.m84046_240619_124816_s1.bc2072.ft.map-pb_corrected_realigned.bam'
 bam = pysam.AlignmentFile(bam_name, "rb")
 
 # chr19:47,514,458-47,519,061 NAPA
