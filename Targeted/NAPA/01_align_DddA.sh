@@ -1,8 +1,8 @@
 #!/bin/bash
 
-FASTA="/mmfs1/gscratch/stergachislab/assemblies/simple-names/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna"
+FASTA="../data/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna"
 
-BAMS=('PS00626.m84046_240619_124816_s1.bc2072.ft.bam' 'PS00627.m84046_240619_124816_s1.bc2073.ft.bam' 'PS00628.m84046_240619_124816_s1.bc2074.ft.bam' 'PS00629.m84046_240619_124816_s1.bc2075.ft.bam' 'PS00630.m84046_240619_124816_s1.bc2076.ft.bam' 'PS00631.m84046_240619_124816_s1.bc2077.ft.bam')
+BAMS=('../data/PS00626.m84046_240619_124816_s1.bc2072.ft.bam' '../data/PS00627.m84046_240619_124816_s1.bc2073.ft.bam' '../data/PS00628.m84046_240619_124816_s1.bc2074.ft.bam' '../data/PS00629.m84046_240619_124816_s1.bc2075.ft.bam' '../data/PS00630.m84046_240619_124816_s1.bc2076.ft.bam' '../data/PS00631.m84046_240619_124816_s1.bc2077.ft.bam')
 
 for b in "${BAMS[@]}"; do 
 minimap2 -t 40 --MD -Y -y -a -x map-pb $FASTA <(samtools fastq -T "*" "$b") | samtools sort > ${b/bam/map-pb.bam}
@@ -15,7 +15,7 @@ python /mmfs1/gscratch/stergachislab/swansoe/projects/DddA/process_DddA_bam.py -
 done
 
 
-COR_BAMS=('PS00626.m84046_240619_124816_s1.bc2072.ft.map-pb_corrected.bam' 'PS00627.m84046_240619_124816_s1.bc2073.ft.map-pb_corrected.bam' 'PS00628.m84046_240619_124816_s1.bc2074.ft.map-pb_corrected.bam' 'PS00629.m84046_240619_124816_s1.bc2075.ft.map-pb_corrected.bam' 'PS00630.m84046_240619_124816_s1.bc2076.ft.map-pb_corrected.bam' 'PS00631.m84046_240619_124816_s1.bc2077.ft.map-pb_corrected.bam')
+COR_BAMS=('../data/PS00626.m84046_240619_124816_s1.bc2072.ft.map-pb_corrected.bam' '../data/S00627.m84046_240619_124816_s1.bc2073.ft.map-pb_corrected.bam' '../data/PS00628.m84046_240619_124816_s1.bc2074.ft.map-pb_corrected.bam' '../data/PS00629.m84046_240619_124816_s1.bc2075.ft.map-pb_corrected.bam' '../data/PS00630.m84046_240619_124816_s1.bc2076.ft.map-pb_corrected.bam' '../data/PS00631.m84046_240619_124816_s1.bc2077.ft.map-pb_corrected.bam')
 
 for b in "${COR_BAMS[@]}"; do
 samtools index $b;
