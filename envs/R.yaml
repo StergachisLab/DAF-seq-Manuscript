@@ -1,9 +1,0 @@
-name: R
-channels:
-  - defaults
-dependencies:
-  - conda-forge::r-base
-  - cmake
-  - ca-certificates
-  - openssl
-prefix: /gscratch/stergachislab/swansoe/miniconda3/envs/R
