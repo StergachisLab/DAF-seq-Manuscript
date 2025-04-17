@@ -41,6 +41,6 @@ ggsave("run_of_3_lineplot.png", plot, width=8, height=6)
 
 
 # highlight 
-footprint_regions <- read_tsv("/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1/footprinting/NAPA/merged_ft_on_both_strands.bed", col_names=c('chrom','start','end'))
+footprint_regions <- read_tsv("merged_ft_on_both_strands.bed", col_names=c('chrom','start','end'))
 
 
