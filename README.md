@@ -13,6 +13,8 @@ Targeted DAF-seq analyses are divided my genomic region (ex. NAPA). Downloaded d
 
 The expected order of NAPA analyses is alignment and preprocessing, followed by scripts in the "footprinting", "qc_plots", "saturation" folders. Thermodynamic analysis of TF occupancy at the NAPA promoter is contained with the "Thermodynamic_Daf-seq_footprinting" folder within the "footprinting" section.
 
+The expected order of UBA1 analyses is alignment and preprocessing, followed by cripts in the "pileups", "footprinting", "TSS_codependency" folders. The "FINAL_UBA1_plots.R" script creates the figure plots.
+
 
 ## Single Cell
 
