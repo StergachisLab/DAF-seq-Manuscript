@@ -11,7 +11,7 @@ The script “process_DddA_bam.py” takes an aligned BAM file as a command line
 ## Targeted
 Targeted DAF-seq analyses are divided my genomic region (ex. NAPA). Downloaded data is expected to be stored in the "data" folder.
 
-The expected order of NAPA analyses is alignment and preprocessing, followed by scripts in the "footprinting", "qc_plots", "saturation" folders.
+The expected order of NAPA analyses is alignment and preprocessing, followed by scripts in the "footprinting", "qc_plots", "saturation" folders. Thermodynamic analysis of TF occupancy at the NAPA promoter is contained with the "Thermodynamic_Daf-seq_footprinting" folder within the "footprinting" section.
 
 
 ## Single Cell
