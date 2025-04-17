@@ -4,7 +4,7 @@ import pysam
 from collections import Counter
 
 
-bam_dir = '/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/SLC39A4/processed_bams'
+bam_dir = '../'
 bams = ['GM12878_SLC39A4_PS00686_haplotype_corrected.bam','Liver_SLC39A4_PS00680_haplotype_corrected.bam']
 
 # extract counts for EACH position of fibers
