@@ -12,9 +12,6 @@ uba1_region = '../region_UBA1.bed'
 
 for b in bams:
     bam_path = f"{bam_dir}/{b}"
-    nuc_bam = 'GM12878_UBA1_PS00685_nuc.bam'
-    nuc_H1 = 'GM12878_UBA1_PS00685_nuc_H1.bam'
-    nuc_H2 = 'GM12878_UBA1_PS00685_nuc_H2.bam'
     extract_H1 = 'GM12878_UBA1_PS00685_ft_extract_all_H1.bed'
     extract_H2 = 'GM12878_UBA1_PS00685_ft_extract_all_H2.bed'
     # Generate BigWigs ------------------------------------------------------------------
@@ -48,17 +45,17 @@ for b in bams:
     nuc_reg.to_csv(nuc_bed, sep="\t", header=False, index=False)
     small_msps.to_csv(small_bed, sep="\t", header=False, index=False)
     large_msps.to_csv(large_bed, sep="\t", header=False, index=False)
-    shell_command = f"bedtools intersect -a {nuc_bed} -b {uba1_region} | bedtools genomecov -bg -i stdin -g /gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes > {nuc_bed.replace('.bed','.bg')}"
+    shell_command = f"bedtools intersect -a {nuc_bed} -b {uba1_region} | bedtools genomecov -bg -i stdin -g ../hg38.analysisSet.chrom.sizes > {nuc_bed.replace('.bed','.bg')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
-    shell_command = f"bedtools intersect -a {small_bed} -b {uba1_region} | bedtools genomecov -bg -i stdin -g /gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes > {small_bed.replace('.bed','.bg')}"
+    shell_command = f"bedtools intersect -a {small_bed} -b {uba1_region} | bedtools genomecov -bg -i stdin -g ../hg38.analysisSet.chrom.sizes > {small_bed.replace('.bed','.bg')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
-    shell_command = f"bedtools intersect -a {large_bed} -b {uba1_region} | bedtools genomecov -bg -i stdin -g /gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes > {large_bed.replace('.bed','.bg')}"
+    shell_command = f"bedtools intersect -a {large_bed} -b {uba1_region} | bedtools genomecov -bg -i stdin -g ../hg38.analysisSet.chrom.sizes > {large_bed.replace('.bed','.bg')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
-    shell_command = f"bedGraphToBigWig {nuc_bed.replace('.bed','.bg')} /mmfs1/gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes {nuc_bed.replace('.bed','.bw')}"
+    shell_command = f"bedGraphToBigWig {nuc_bed.replace('.bed','.bg')} ../hg38.analysisSet.chrom.sizes {nuc_bed.replace('.bed','.bw')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
-    shell_command = f"bedGraphToBigWig {small_bed.replace('.bed','.bg')} /mmfs1/gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes {small_bed.replace('.bed','.bw')}"
+    shell_command = f"bedGraphToBigWig {small_bed.replace('.bed','.bg')} ../hg38.analysisSet.chrom.sizes {small_bed.replace('.bed','.bw')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
-    shell_command = f"bedGraphToBigWig {large_bed.replace('.bed','.bg')} /mmfs1/gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes {large_bed.replace('.bed','.bw')}"
+    shell_command = f"bedGraphToBigWig {large_bed.replace('.bed','.bg')} ../hg38.analysisSet.chrom.sizes {large_bed.replace('.bed','.bw')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
     name = 'GM12878_UBA1_PS00685_H2'
     df_H2 = pd.read_csv(extract_H2, sep = "\t")
@@ -90,17 +87,17 @@ for b in bams:
     nuc_reg.to_csv(nuc_bed, sep="\t", header=False, index=False)
     small_msps.to_csv(small_bed, sep="\t", header=False, index=False)
     large_msps.to_csv(large_bed, sep="\t", header=False, index=False)
-    shell_command = f"bedtools intersect -a {nuc_bed} -b {uba1_region} | bedtools genomecov -bg -i stdin -g /gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes > {nuc_bed.replace('.bed','.bg')}"
+    shell_command = f"bedtools intersect -a {nuc_bed} -b {uba1_region} | bedtools genomecov -bg -i stdin -g ../hg38.analysisSet.chrom.sizes > {nuc_bed.replace('.bed','.bg')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
-    shell_command = f"bedtools intersect -a {small_bed} -b {uba1_region} | bedtools genomecov -bg -i stdin -g /gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes > {small_bed.replace('.bed','.bg')}"
+    shell_command = f"bedtools intersect -a {small_bed} -b {uba1_region} | bedtools genomecov -bg -i stdin -g ../hg38.analysisSet.chrom.sizes > {small_bed.replace('.bed','.bg')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
-    shell_command = f"bedtools intersect -a {large_bed} -b {uba1_region} | bedtools genomecov -bg -i stdin -g /gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes > {large_bed.replace('.bed','.bg')}"
+    shell_command = f"bedtools intersect -a {large_bed} -b {uba1_region} | bedtools genomecov -bg -i stdin -g ../hg38.analysisSet.chrom.sizes > {large_bed.replace('.bed','.bg')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
-    shell_command = f"bedGraphToBigWig {nuc_bed.replace('.bed','.bg')} /mmfs1/gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes {nuc_bed.replace('.bed','.bw')}"
+    shell_command = f"bedGraphToBigWig {nuc_bed.replace('.bed','.bg')} ../hg38.analysisSet.chrom.sizes {nuc_bed.replace('.bed','.bw')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
-    shell_command = f"bedGraphToBigWig {small_bed.replace('.bed','.bg')} /mmfs1/gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes {small_bed.replace('.bed','.bw')}"
+    shell_command = f"bedGraphToBigWig {small_bed.replace('.bed','.bg')} ../hg38.analysisSet.chrom.sizes {small_bed.replace('.bed','.bw')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
-    shell_command = f"bedGraphToBigWig {large_bed.replace('.bed','.bg')} /mmfs1/gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes {large_bed.replace('.bed','.bw')}"
+    shell_command = f"bedGraphToBigWig {large_bed.replace('.bed','.bg')} ../hg38.analysisSet.chrom.sizes {large_bed.replace('.bed','.bw')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
     # Prop deaminated ------------------------------------------------------------------
     bam = pysam.AlignmentFile(bam_path, "rb")
@@ -147,7 +144,7 @@ for b in bams:
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
     shell_command = f"mv temp.bg {out_bg}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
-    shell_command = f"bedGraphToBigWig {out_bg} /mmfs1/gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes {out_bg.replace('.bg','.bw')}"
+    shell_command = f"bedGraphToBigWig {out_bg} ../hg38.analysisSet.chrom.sizes {out_bg.replace('.bg','.bw')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
     out_bg = f'GM12878_UBA1_PS00685_H2_DA_density.bg'
     with open(out_bg,'w') as fout:
@@ -161,6 +158,6 @@ for b in bams:
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
     shell_command = f"mv temp.bg {out_bg}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
-    shell_command = f"bedGraphToBigWig {out_bg} /mmfs1/gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes {out_bg.replace('.bg','.bw')}"
+    shell_command = f"bedGraphToBigWig {out_bg} ../hg38.analysisSet.chrom.sizes {out_bg.replace('.bg','.bw')}"
     subprocess.run(shell_command, shell=True, check=True, capture_output=True, text=True)
 
