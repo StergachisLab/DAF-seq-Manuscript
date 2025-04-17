@@ -2,13 +2,12 @@
 set -euo pipefail 
 
 cd clust_pileups
-FT=/mmfs1/gscratch/stergachislab/bin/ft
-BW=/gscratch/stergachislab/install_dir/bedGraphToBigWig
-SIZES=/mmfs1/gscratch/stergachislab/assemblies/hg38.analysisSet.chrom.sizes
-REG=/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/SLC39A4/SLC39A4_region.bed
+BW=bedGraphToBigWig
+SIZES=..//hg38.analysisSet.chrom.sizes
+REG=../SLC39A4_region.bed
 
-GM_BAM="/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/SLC39A4/pileups/GM12878_SLC39A4_PS00686_nuc.bam"
-Liver_BAM="/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/SLC39A4/pileups/Liver_SLC39A4_PS00680_nuc.bam"
+GM_BAM="../GM12878_SLC39A4_PS00686_nuc.bam"
+Liver_BAM="../Liver_SLC39A4_PS00680_nuc.bam"
 MERGED="merged_GM12878_Liver_nuc.bam"
 
 samtools merge -o $MERGED $GM_BAM $Liver_BAM
@@ -25,7 +24,7 @@ do
     samtools index $TEMP
     NAME=${c%_DA_GA_zmw.txt};
     FT_OUT="${NAME}_ft_pileup_GA.bed";
-    $FT pileup -t 30 --m6a -x "len(msp)>150" --out $FT_OUT $TEMP
+    ft pileup -t 30 --m6a -x "len(msp)>150" --out $FT_OUT $TEMP
     # MSP
     BG_NAME="${NAME}_ft_pileup_GA_msp150.bg"
     BW_NAME="${NAME}_ft_pileup_GA_msp150.bw"
