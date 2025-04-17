@@ -9,7 +9,7 @@ with open('adata_zmw_all.txt','w') as fw:
     for sz in adata.obs.index:
         fw.write(f'{sz}\n')
 
-sub_zmw_file = 'clustering/adata_zmw_all.txt'
+sub_zmw_file = 'adata_zmw_all.txt'
 sub_zmw = set()
 with open(sub_zmw_file) as fr:
     for line in fr:
@@ -19,7 +19,7 @@ df_GA = df_GA[df_GA.index.isin(sub_zmw)]
 
 
 # Filter out exact matches
-dedup_dir='/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/duplicate_reads/exact_matches'
+dedup_dir='../../Duplicate_reads_ExtendedData_Fig5/Exact'
 dz_files = ['Liver_SLC39A4_PS00680_map-pb_corrected_realigned_SLC39A4_region_DAF_DeDuplicated_zmws.txt', 'GM12878_SLC39A4_PS00686_map-pb_corrected_realigned_SLC39A4_region_DAF_DeDuplicated_zmws.txt']
 dedup_zmws = set()
 for dzf in dz_files:
@@ -28,7 +28,7 @@ for dzf in dz_files:
             dedup_zmws.add(line.strip())
 
 # GA reads
-df_GA = pd.read_csv('clustering/tissue_DA_features_GA.csv.gz', index_col='zmw')
+df_GA = pd.read_csv(tissue_DA_features_GA.csv.gz', index_col='zmw')
 df_GA = df_GA[df_GA.index.isin(dedup_zmws)]
 
 df_h1_l = df_GA[(df_GA['hap'] == 1) & (df_GA['tissue'] == 'Liver')]
@@ -130,7 +130,7 @@ for s_name,sam_df in samples.items():
     print()
 
 
-dedup_dir = 'duplicate_reads'
+dedup_dir = '../../Duplicate_reads_ExtendedData_Fig5/Exact'
 dup_files = ['Liver_H1_unique_adata_zmw.txt', 'Liver_H2_unique_adata_zmw.txt', 'GM12878_H1_unique_adata_zmw.txt', 'GM12878_H2_unique_adata_zmw.txt',]
 keep_zmw = []
 for f in dup_files:
