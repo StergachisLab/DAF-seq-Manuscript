@@ -5,7 +5,7 @@ import csv
     # Deamination rates surrounding element 1, 4, 7, and 11 at the various concentrations 
 
 # promoter coordinates
-with open('../napa_promoter_region.bed') as fr:
+with open('../footprinting/napa_promoter_region.bed') as fr:
     chrom, p_start, p_end = next(fr).strip().split('\t')
     p_start = int(p_start)
     p_end = int(p_end)
@@ -22,7 +22,7 @@ with open('../qc_plots/prop_da_titration_NAPA.tsv') as fr:
 
 # footprint regions
 regions = dict()
-with open('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1/footprinting/NAPA/merged_ft_on_both_strands.bed') as fr:
+with open('../footprinting/merged_ft_on_both_strands.bed') as fr:
     reader = csv.reader(fr, delimiter="\t")
     i = 1
     for line in reader:
