@@ -111,7 +111,6 @@ with open('overall_prop_da_titration_NAPA.tsv','w') as fw:
 # filter to NAPA promoter region (FIRE narrow peak #99860 chr19:47,514,957-47,515,660)
 # Made start position the NAPA TSS 47,515,063!
 # chr19 47515063    47515660
-# Consistent with NAPA footprinting script: /mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1/footprinting/NAPA/quantify_footprints.py
 
 prom_start = 47515063
 prom_end = 47515660
