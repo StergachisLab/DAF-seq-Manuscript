@@ -1,7 +1,7 @@
 #!/bin/bash
 
-FASTA="/mmfs1/gscratch/stergachislab/assemblies/simple-names/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna"
-FASTA2="/gscratch/stergachislab/assemblies/hg002v1.0.1.fasta"
+FASTA="GCA_000001405.15_GRCh38_no_alt_analysis_set.fna"
+FASTA2="hg002v1.0.1.fasta"
 
 
 # K562 alignments
