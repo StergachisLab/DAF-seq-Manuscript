@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd clust_pileups
 BW=bedGraphToBigWig
-SIZES=..//hg38.analysisSet.chrom.sizes
+SIZES=../hg38.analysisSet.chrom.sizes
 REG=../SLC39A4_region.bed
 
 GM_BAM="../GM12878_SLC39A4_PS00686_nuc.bam"
