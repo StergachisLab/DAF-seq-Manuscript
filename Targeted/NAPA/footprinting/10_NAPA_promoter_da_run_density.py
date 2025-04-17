@@ -4,7 +4,7 @@ import csv
 
 # Identify positions of X straight deamiantions within the NAPA promoter, output as BED file --------------------------------------------
 
-napa_bam = "/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1/haplotype_correct_NAPA/NAPA_PS00626_haplotype_corrected.bam"
+napa_bam = "../NAPA_PS00626_haplotype_corrected.bam"
 
 prom_start = 47515063
 prom_end = 47515660
