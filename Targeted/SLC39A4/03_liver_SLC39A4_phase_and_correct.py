@@ -4,12 +4,8 @@ import pysam
 import csv
 
 
-
 # LIVER SAMPLE ---------------------------------------------------------------------------------------------------------
-
-# USING Corrected BUT NOT realigned BAMs as minimap2 can swap the Y/R if the alignment (usually supp) swaps the +/- strand!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-bam_name = 'Liver_SLC39A4_PS00680_m84046_240802_231812_s1.hifi_reads.bc2084.map-pb_corrected_realigned.bam'
+bam_name = '../data/Liver_SLC39A4_PS00680_m84046_240802_231812_s1.hifi_reads.bc2084.map-pb_corrected_realigned.bam'
 new_bam = 'Liver_SLC39A4_PS00680_haplotype_corrected.bam'
 bam = pysam.AlignmentFile(bam_name, "rb")
 
@@ -73,9 +69,6 @@ for sk in shared_keys:
         base_type = 'HET'
         hets.append(sk)
     daf_basecalls[sk] = base_type
-
-# for h in hets:
-#     print(h, ct_pos[h], ga_pos[h])
 
 # Count combos of specified HET variants in reads
 het_ref = [144416180]
