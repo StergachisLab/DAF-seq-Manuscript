@@ -1,7 +1,7 @@
 #!/bin/bash
 
-FASTA="/mmfs1/gscratch/stergachislab/assemblies/simple-names/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna"
-FASTA2="/gscratch/stergachislab/assemblies/hg002v1.0.1.fasta"
+FASTA="GCA_000001405.15_GRCh38_no_alt_analysis_set.fna"
+FASTA2="hg002v1.0.1.fasta"
 
 # PS00535	K562 nuclei (3.5 m) treated with 0.25 µM DddA WT at 25 ˚C for 10 min in Buffer A + 10 nM ZnCl2, then WGA
 # PS00536	K562 nuclei (3.5 m) treated with 0.25 µM DddA 5 at 25 ˚C for 10 min in Buffer A + 10 nM ZnCl2, then WGA
