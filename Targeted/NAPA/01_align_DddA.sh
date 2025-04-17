@@ -11,7 +11,7 @@ done
 
 # replace Da with IUPAC codes
 for b in "${BAMS[@]}"; do 
-python /mmfs1/gscratch/stergachislab/swansoe/projects/DddA/process_DddA_bam.py -b ${b/bam/map-pb.bam};
+python ../../General/process_DddA_bam.py -b ${b/bam/map-pb.bam};
 done
 
 
