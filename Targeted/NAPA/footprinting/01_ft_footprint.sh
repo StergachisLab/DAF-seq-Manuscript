@@ -1,9 +1,8 @@
 #!/bin/bash
 
-alpha_ft=/mmfs1/gscratch/stergachislab/mvollger/projects/fibertools-rs/target/release/ft
-mod_bam=/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1/haplotype_correct/NAPA_PS00626_haplotype_corrected.bam
+mod_bam=../NAPA_PS00626_haplotype_corrected.bam
 
-$alpha_ft ddda-to-m6a $mod_bam NAPA_m6a.bam
+ft ddda-to-m6a $mod_bam NAPA_m6a.bam
 samtools index NAPA_m6a.bam
 
 ft add-nucleosomes -v NAPA_m6a.bam NAPA_nuc.bam
