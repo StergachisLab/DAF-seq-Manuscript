@@ -5,7 +5,7 @@ ADD_D=10
 ADD_C=70
 MIN=15
 
-ft ddda-to-m6a ../data/GM12878_SLC39A4_PS00686_haplotype_corrected.bam | ft add-nucleosomes -n $NUC_LEN -d $ADD_D -c $ADD_C --min-distance-added $MIN - GM12878_SLC39A4_PS00686_nuc.bam
+ft ddda-to-m6a GM12878_SLC39A4_PS00686_haplotype_corrected.bam | ft add-nucleosomes -n $NUC_LEN -d $ADD_D -c $ADD_C --min-distance-added $MIN - GM12878_SLC39A4_PS00686_nuc.bam
 samtools index GM12878_SLC39A4_PS00686_nuc.bam
 samtools view -b -d ST:CT GM12878_SLC39A4_PS00686_nuc.bam | samtools view -b -d HP:1 - > GM12878_SLC39A4_PS00686_nuc_CT_H1.bam
 samtools view -b -d ST:CT GM12878_SLC39A4_PS00686_nuc.bam | samtools view -b -d HP:2 - > GM12878_SLC39A4_PS00686_nuc_CT_H2.bam
@@ -20,7 +20,7 @@ ft extract -t 30 GM12878_SLC39A4_PS00686_nuc_CT_H2.bam --all GM12878_SLC39A4_PS0
 ft extract -t 30 GM12878_SLC39A4_PS00686_nuc_GA_H1.bam --all GM12878_SLC39A4_PS00686_ft_extract_all_GA_H1.bed
 ft extract -t 30 GM12878_SLC39A4_PS00686_nuc_GA_H1.bam --all GM12878_SLC39A4_PS00686_ft_extract_all_GA_H2.bed
 
-ft ddda-to-m6a ../data//Liver_SLC39A4_PS00680_haplotype_corrected.bam | ft add-nucleosomes -n $NUC_LEN -d $ADD_D -c $ADD_C --min-distance-added $MIN - Liver_SLC39A4_PS00680_nuc.bam
+ft ddda-to-m6a Liver_SLC39A4_PS00680_haplotype_corrected.bam | ft add-nucleosomes -n $NUC_LEN -d $ADD_D -c $ADD_C --min-distance-added $MIN - Liver_SLC39A4_PS00680_nuc.bam
 samtools index Liver_SLC39A4_PS00680_nuc.bam
 samtools view -b -d ST:CT Liver_SLC39A4_PS00680_nuc.bam | samtools view -b -d HP:1 - > Liver_SLC39A4_PS00680_nuc_CT_H1.bam
 samtools view -b -d ST:CT Liver_SLC39A4_PS00680_nuc.bam | samtools view -b -d HP:2 - > Liver_SLC39A4_PS00680_nuc_CT_H2.bam
