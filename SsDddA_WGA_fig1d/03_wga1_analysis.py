@@ -189,53 +189,10 @@ ref_noAmp_pwm = kmer_pwm(ref_kmers_noAmp, 7)
 read_noAmp_pwm = kmer_pwm(read_kmers_noAmp, 7)
 
 
-
-# Available logo fonts
-    # lm.list_font_names()
-
 pwm = [ref_wt_pwm, read_wt_pwm, ref_d5_pwm, read_d5_pwm, ref_hg_pwm, read_hg_pwm, ref_noAmp_pwm, read_noAmp_pwm]
 pwm_names = ['ref_wt', 'read_wt', 'ref_d5', 'read_d5', 'ref_hg', 'read_hg', 'ref_noAmp', 'read_noAmp']
 for i in range(len(pwm)):
     df = pd.DataFrame(pwm[i])
     logo = lm.Logo(df, font_name = 'Arial Rounded MT Bold')
     plt.savefig(f'{pwm_names[i]}_test.pdf')
-
-
-
-
-# base_counts = {'A':0, 'C':0, 'G':0, 'T':0, 'Y':0, 'R':0}
-# base_counts = {'A':0, 'C':0, 'G':0, 'T':0, 'Y':0, 'R':0}
-# for bam_name in ['PS00536_K562_5.map-ont_corrected.bam']:
-#     bam = pysam.AlignmentFile(bam_name, "rb")
-#     for read in bam.fetch("chr22"):
-#         if read.is_secondary == False and read.is_supplementary == False:
-#             print()
-
-# read.get_cigar_stats()
-# read.cigarstring
-# read.is_mapped
-# read.seq
-# read.query_sequence
-# read.qlen # reference span
-
-# 143265541
-# chr22
-# 33950255
-
-# 53152966
-# m84046_240224_152130_s4/53152966/ccs
-# chr22:30,360,473-30,364,300
-# chr2:74,587,397-74,591,957
-
-# PS00576
-# chr4:2,631,175-2,638,339 Intra read chimera?
-# m84055_240423_222813_s1/28049886/ccs 
-# 4224 bp
-# 2187
-# 1977
-
-
-
-
-
 
