@@ -6,14 +6,6 @@ from collections import Counter
 import pysam
 from itertools import combinations
 
-# TSSs as defined by Mas Iso-seq (first 4 of 5 are within FIRE peaks)
-# bedtools intersect -a /gscratch/stergachislab/swansoe/projects/GM12878_scATAC/phased-fdr-and-peaks/XCI/isoseq/GM12878_mas_collapsed_TSS.bed -b region_UBA1.bed | head -n 4 > tss_uba1_masSeq.bed
-# bedmap --ec --echo --echo-map-id tss_uba1_masSeq.bed <( sort-bed pileups/GM12878_UBA1_PS00685_H1_large_msp_positions.bed ) > large_msps_H1_fire_map.txt
-
-# ALL 7 PEAKS
-# bedmap --ec --fraction-ref 0.8 --echo --echo-map-id FIRE_narrowPeaks_GM12878.bed <( sort-bed pileups/GM12878_UBA1_PS00685_H1_large_msp_positions.bed ) > large_msps_H1_ALL_fire_map.txt
-
-
 
 # Hap 1 -------------------------------------------------------------------------------------------------------------------------------
 
@@ -28,8 +20,6 @@ with open(bmap) as fr:
         bed2 = bed.split('\t')
         peak_regions[i] = f"{bed2[0]}:{bed2[1]}-{bed2[2]}"
         i+=1
-
-# samtools view pileups/GM12878_UBA1_PS00685_nuc_H1.bam | awk '{ print $1 }' > H1_GA_GM12878_UBA1_zmws.txt
 
 # total fiber number
 # chrX:47190561-47194939 UBA1
@@ -88,8 +78,6 @@ with open('codep_scores_pairs_H1.csv','w') as fw:
 
 # Hap 2 -------------------------------------------------------------------------------------------------------------------------------
 
-# bedmap --ec --echo --echo-map-id tss_uba1_masSeq.bed <( sort-bed pileups/GM12878_UBA1_PS00685_H2_large_msp_positions.bed ) > large_msps_H2_fire_map.txt
-
 peaks = dict()
 peak_regions = dict()
 bmap='large_msps_H2_fire_map.txt'
@@ -101,9 +89,6 @@ with open(bmap) as fr:
         bed2 = bed.split('\t')
         peak_regions[i] = f"{bed2[0]}:{bed2[1]}-{bed2[2]}"
         i+=1
-
-
-# samtools view pileups/GM12878_UBA1_PS00685_nuc_H1.bam | awk '{ print $1 }' > H1_GA_GM12878_UBA1_zmws.txt
 
 # total fiber number
 # chrX:47190561-47194939 UBA1
