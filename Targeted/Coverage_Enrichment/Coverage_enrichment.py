@@ -5,7 +5,7 @@ out_lines = []
 out_lines.append(['Region','DAF_reads','FS_reads','DAF_prop','FS_prop','DAF_enrichment'])
 
 
-bam_name = '/mmfs1/gscratch/stergachislab/mvollger/projects/FIREv2.0/results/GM12878/fire/GM12878.fire.bam'
+bam_name = '../data/GM12878.fire.bam'
 bam = pysam.AlignmentFile(bam_name, "rb")
 FS_total_reads = 0
 for read in bam.fetch():
@@ -14,7 +14,7 @@ for read in bam.fetch():
 
 
 # NAPA & WASF1 BAM
-bam_name = '/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1/PS00626.m84046_240619_124816_s1.bc2072.ft.map-pb_corrected_realigned.bam'
+bam_name = '../data/PS00626.m84046_240619_124816_s1.bc2072.ft.map-pb_corrected_realigned.bam'
 bam = pysam.AlignmentFile(bam_name, "rb")
 total_reads = 0
 for read in bam.fetch():
@@ -44,7 +44,7 @@ prop_DAF = daf_target/total_reads
 
 
 # GM12878 Fiber-seq BAM
-bam_name = '/mmfs1/gscratch/stergachislab/mvollger/projects/FIREv2.0/results/GM12878/fire/GM12878.fire.bam'
+bam_name = '../data/GM12878.fire.bam'
 bam = pysam.AlignmentFile(bam_name, "rb")
 
 # chr19:47,514,458-47,519,061 NAPA
@@ -70,13 +70,8 @@ prop_FS = FS_target/FS_total_reads
 out_lines.append(['NAPA_WASF1', daf_target, FS_target, prop_DAF, prop_FS, prop_DAF/prop_FS])
 
 
-
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 # UBA1
-bam_name = 'UBA1/PS00685_GM12878_UBA1_m84046_240802_231812_s1.hifi_reads.bc2093.map-pb_corrected_realigned.bam'
+bam_name = '../dataPS00685_GM12878_UBA1_m84046_240802_231812_s1.hifi_reads.bc2093.map-pb_corrected_realigned.bam'
 bam = pysam.AlignmentFile(bam_name, "rb")
 total_reads = 0
 for read in bam.fetch():
@@ -96,7 +91,7 @@ prop_DAF = daf_target/total_reads
 
 
 # GM12878 Fiber-seq BAM
-bam_name = '/mmfs1/gscratch/stergachislab/mvollger/projects/FIREv2.0/results/GM12878/fire/GM12878.fire.bam'
+bam_name = '../GM12878.fire.bam'
 bam = pysam.AlignmentFile(bam_name, "rb")
 reg_chrom = 'chrX'
 reg_start = 47190561
@@ -112,7 +107,7 @@ out_lines.append(['UBA1', daf_target, FS_target, prop_DAF, prop_FS, prop_DAF/pro
 
 
 # SLC39A4
-bam_name = 'SLC39A4/processed_bams/GM12878_SLC39A4_PS00686_m84046_240802_231812_s1.hifi_reads.bc2094.map-pb_corrected_realigned.bam'
+bam_name = '../GM12878_SLC39A4_PS00686_m84046_240802_231812_s1.hifi_reads.bc2094.map-pb_corrected_realigned.bam'
 bam = pysam.AlignmentFile(bam_name, "rb")
 total_reads = 0
 for read in bam.fetch():
@@ -132,7 +127,7 @@ prop_DAF = daf_target/total_reads
 
 
 # GM12878 Fiber-seq BAM
-bam_name = '/mmfs1/gscratch/stergachislab/mvollger/projects/FIREv2.0/results/GM12878/fire/GM12878.fire.bam'
+bam_name = '../GM12878.fire.bam'
 bam = pysam.AlignmentFile(bam_name, "rb")
 reg_chrom = 'chr8'
 reg_start = 144415793
