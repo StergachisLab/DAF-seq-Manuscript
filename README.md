@@ -17,4 +17,4 @@ The expected order of UBA1 analyses is alignment and preprocessing, followed by 
 
 
 ## Single Cell
-
+Single cell analyses are organized by folder and are expected to be processed in the following order: data, collapse, phasing, msp_analysis, CTCF_occupancy, msp_codependency, scDAF_figures.
