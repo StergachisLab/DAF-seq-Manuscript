@@ -3,7 +3,7 @@ import csv
 import pandas as pd
 
 # NAPA titration haplotype corrected BAMs
-napa_dir = '/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1/haplotype_correct_NAPA'
+napa_dir = '../'
 napa_bams = ['NAPA_PS00626_haplotype_corrected.bam',
              'NAPA_PS00627_haplotype_corrected.bam',
              'NAPA_PS00628_haplotype_corrected.bam',
@@ -146,7 +146,7 @@ with open('overall_prop_da_titration_NAPA_promoter.tsv','w') as fw:
 # --------------------------------------------------------------------------------------------------------------------
 
 # WASF1 titration BAMs
-wasf1_dir = '/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1'
+wasf1_dir = '../'
 wasf1_bams = ['PS00626.m84046_240619_124816_s1.bc2072.ft.map-pb_corrected_realigned.bam',
 'PS00627.m84046_240619_124816_s1.bc2073.ft.map-pb_corrected_realigned.bam',
 'PS00628.m84046_240619_124816_s1.bc2074.ft.map-pb_corrected_realigned.bam',
