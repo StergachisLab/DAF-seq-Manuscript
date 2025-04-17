@@ -3,8 +3,7 @@
 import pysam
 import csv
 
-# HEART SAMPLE ---------------------------------------------------------------------------------------------------------
-bam_name = 'PS00719_COLO_Region2_m84055_240822_221245_s3.hifi_reads.bc2069.map-pb_corrected_realigned.bam'
+bam_name = '../data/PS00719_COLO_Region2_m84055_240822_221245_s3.hifi_reads.bc2069.map-pb_corrected_realigned.bam'
 new_bam = 'PS00719_COLO_Region2_m84055_240822_221245_s3.hifi_reads.bc2069.map-pb_corrected_realigned_GA_ONLY.bam'
 bam = pysam.AlignmentFile(bam_name, "rb")
 
