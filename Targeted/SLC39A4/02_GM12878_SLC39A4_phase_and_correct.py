@@ -5,7 +5,7 @@ import csv
 
 
 # HEART SAMPLE ---------------------------------------------------------------------------------------------------------
-bam_name = 'GM12878_SLC39A4_PS00686_m84046_240802_231812_s1.hifi_reads.bc2094.map-pb_corrected_realigned.bam'
+bam_name = '../data/GM12878_SLC39A4_PS00686_m84046_240802_231812_s1.hifi_reads.bc2094.map-pb_corrected_realigned.bam'
 new_bam = 'GM12878_SLC39A4_PS00686_haplotype_corrected.bam'
 bam = pysam.AlignmentFile(bam_name, "rb")
 
@@ -70,8 +70,6 @@ for sk in shared_keys:
         hets.append(sk)
     daf_basecalls[sk] = base_type
 
-# for h in hets:
-#     print(h, ct_pos[h], ga_pos[h])
 
 # 144416180 G/T
 
