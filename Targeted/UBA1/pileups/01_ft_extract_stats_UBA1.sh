@@ -39,3 +39,11 @@ sed 1d ft_pileup_GM12878_UBA1_H2.bed | bedtools intersect -a stdin -b region_UBA
 bedGraphToBigWig ft_pileup_GM12878_UBA1_H1_DA.bg ../hg38.analysisSet.chrom.sizes ft_pileup_GM12878_UBA1_H1_DA.bw
 bedGraphToBigWig ft_pileup_GM12878_UBA1_H2_DA.bg ../hg38.analysisSet.chrom.sizes ft_pileup_GM12878_UBA1_H2_DA.bw
 
+
+bedtools intersect -a ft_pileup_GM12878_UBA1_H1.bed -b ../tss_uba1_masSeq.bed > ft_pileup_H1_uba1_masSeq_TSS.bed
+bedtools intersect -a ft_pileup_GM12878_UBA1_H2.bed -b../ tss_uba1_masSeq.bed > ft_pileup_H2_uba1_masSeq_TSS.bed
+
+# Canonical promoter TF % occupancy BY REGION
+bedtools intersect -wa -a region_footprint_props_UBA1_H1.bed -b ../canonical_uba1_promoter.bed > canonical_uba1_promoter_footprinted_regions_H1.bed
+bedtools intersect -wa -a region_footprint_props_UBA1_H2.bed -b ../canonical_uba1_promoter.bed > canonical_uba1_promoter_footprinted_regions_H2.bed
+
