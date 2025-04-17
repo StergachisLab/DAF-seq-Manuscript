@@ -32,10 +32,10 @@ my_ggsave <- function(file, ...){
 tss_df <- read_tsv('tss_uba1_masSeq.bed', col_names=c('chr','start','end','PB_ID','score','strand')) # TSS coordinates from MAS-seq
 
 ft_names=c('chr','start','end','coverage','fire_coverage','score','nuc_coverage','msp_coverage','m6a_coverage')
-h1_ft <- read_tsv('ft_pileup_H1_uba1_masSeq_TSS.bed', col_names=ft_names)
+h1_ft <- read_tsv('pileups/ft_pileup_H1_uba1_masSeq_TSS.bed', col_names=ft_names)
 h1_ft$prop <- h1_ft$msp_coverage / h1_ft$coverage
 h1_ft$hap <- "H1"
-h2_ft <- read_tsv('ft_pileup_H2_uba1_masSeq_TSS.bed', col_names=ft_names)
+h2_ft <- read_tsv('pileups/ft_pileup_H2_uba1_masSeq_TSS.bed', col_names=ft_names)
 h2_ft$prop <- h2_ft$msp_coverage / h2_ft$coverage
 h2_ft$hap <- "H2"
 
