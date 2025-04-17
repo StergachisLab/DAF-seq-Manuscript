@@ -27,15 +27,9 @@ my_ggsave <- function(file, ...){
   system(cmd)
 }
 
-
-
 # TSS % MSP overlaps ----------------------------------------------------------------------------
 
 tss_df <- read_tsv('tss_uba1_masSeq.bed', col_names=c('chr','start','end','PB_ID','score','strand')) # TSS coordinates from MAS-seq
-
-# Pileups generated in pileups/ft_extract_stats_UBA1.sh
-# bedtools intersect -a ft_pileup_GM12878_UBA1_H1.bed -b tss_uba1_masSeq.bed > ft_pileup_H1_uba1_masSeq_TSS.bed --> ran in bash
-# bedtools intersect -a ft_pileup_GM12878_UBA1_H2.bed -b tss_uba1_masSeq.bed > ft_pileup_H2_uba1_masSeq_TSS.bed --> ran in bash
 
 ft_names=c('chr','start','end','coverage','fire_coverage','score','nuc_coverage','msp_coverage','m6a_coverage')
 h1_ft <- read_tsv('ft_pileup_H1_uba1_masSeq_TSS.bed', col_names=ft_names)
@@ -98,11 +92,6 @@ TF_perc_occ <- ggbarplot(TF_occ_long, "name_short", "prop",
 my_ggsave('figures/TF_perc_occ_UBA1_canonical.pdf', TF_perc_occ, width = 12, height = 6, units = "in")
 
 
-# Canonical promoter TF % occupancy BY REGION ----------------------------------------------------------------------------
-# bedtools intersect -wa -a region_footprint_props_UBA1_H1.bed -b canonical_uba1_promoter.bed > canonical_uba1_promoter_footprinted_regions_H1.bed
-# bedtools intersect -wa -a region_footprint_props_UBA1_H2.bed -b canonical_uba1_promoter.bed > canonical_uba1_promoter_footprinted_regions_H2.bed
-
-
 h1_regions <- read_tsv('footprinting/canonical_uba1_promoter_footprinted_regions_H1.bed', col_names=c('chr','start','end','region','prop','strand'))
 h2_regions <- read_tsv('footprinting/canonical_uba1_promoter_footprinted_regions_H2.bed', col_names=c('chr','start','end','region','prop','strand'))
 h1_regions$hap <- 'H1'
@@ -120,55 +109,5 @@ region_perc_occ <- ggbarplot(reg_both_haps, "start", "prop",
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 my_ggsave('figures/region_perc_occ_UBA1_canonical.pdf', region_perc_occ, width = 12, height = 6, units = "in")
-
-
-
-# h1z = pd.read_csv('zmw_footprint_regions_UBA1_H1.csv')
-# h2z = pd.read_csv('zmw_footprint_regions_UBA1_H2.csv')
-
-# Counter(h1z['31'])
-# Counter(h2z['31'])
-# len(h1z[h1z['31'].isin([0,1])])
-# len(h2z[h2z['31'].isin([0,1])])
-# sum(Counter(h1z['31']).values())
-# sum(Counter(h2z['31']).values())
-# len(h1z[h1z['31'].isin([0,1])])/sum(Counter(h1z['31']).values()) # 0.5366057902389635
-# len(h2z[h2z['31'].isin([0,1])])/sum(Counter(h2z['31']).values()) # 0.46560854600849433
-
-
-# Counter(h1z['32'])
-# Counter(h2z['32'])
-# len(h1z[h1z['32'].isin([0,1])])
-# len(h2z[h2z['32'].isin([0,1])])
-# sum(Counter(h1z['32']).values())
-# sum(Counter(h2z['32']).values())
-# len(h1z[h1z['32'].isin([0,1])])/sum(Counter(h1z['32']).values()) # 0.6622385980404845
-# len(h2z[h2z['32'].isin([0,1])])/sum(Counter(h2z['32']).values()) # 0.6296147154242993
-
-
-
-
-# # Codependency and co-occupancy tracks for TSS MSP overlaps ----------------------------------------------------------------------------
-# # ALL data is from H1!!!
-# scores <- read_csv('codep_scores_pairs_H1.csv') # data to use for codep and co-occ heatmaps!!!
-# scores <- scores[order(scores$score),]
-# scores$rank <- as.integer(rownames(scores))
-# scores$name <- str_c(scores$reg1,":",scores$reg2)
-# # nfilt = 3
-# # scores_filt <- scores %>% filter(rank <= nfilt | rank > (nrow(scores)-nfilt))
-
-# score_point <- ggplot(scores, aes(x=reorder(rank, score), y=score)) +
-#     geom_point(size = 1.5, color = "red") +
-#     xlab('Peak Pair') +
-#     ylab('Codependency Score') +
-#     theme_bw(20) +
-#     theme(axis.text.x=element_blank(), axis.ticks.x=element_blank(), panel.grid.major.x = element_blank()) +
-#     ylim(-1,1)
-
-# my_ggsave('figures/codep_score_point_UBA1_H1.pdf', score_point, width = 10, height = 5)
-
-
-
-
 
 
