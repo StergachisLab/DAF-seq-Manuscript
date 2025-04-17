@@ -10,7 +10,7 @@ import csv
 df_DA_GA = pd.read_csv('tissue_DA_features_GA.csv.gz', low_memory=False, index_col='zmw')
 
 # Filter DF to deduplicated ZMWs
-dedup_dir='/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/duplicate_reads'
+dedup_dir='../../Duplicate_reads_ExtendedData_Fig5/Exact'
 dz_files = ['GM12878_H1_unique_adata_zmw.txt','GM12878_H2_unique_adata_zmw.txt','Liver_H1_unique_adata_zmw.txt','Liver_H2_unique_adata_zmw.txt']
 dedup_zmws = set()
 for dzf in dz_files:
