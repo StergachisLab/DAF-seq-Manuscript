@@ -7,9 +7,9 @@ gzip da_counts_by_pos_all_cells.tsv
 
 
 RM_MAPPABLE="hg38.fa.out.repeatmasker.MAPPABLE.sort.bed"
-UNMAP="/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/unreliable_blacklist_highCov_regions_merged.bed"
-AUTO="/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/hg38_autosomes.sizes.bed"
-PEAKS="/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/msp_analysis/FIRE-peaks_HG002_noUnreliableCoverage.AutosomesOnly.bed.gz"
+UNMAP="../phasing/unreliable_blacklist_highCov_regions_merged.bed"
+AUTO="../phasing/hg38_autosomes.sizes.bed"
+PEAKS="../msp_analysis/FIRE-peaks_HG002_noUnreliableCoverage.AutosomesOnly.bed.gz"
 
 bedtools intersect -a hg38.fa.out.repeatmasker.sort.bed -b $AUTO -u | bedtools intersect -v -a stdin -b $UNMAP | sort-bed - > $RM_MAPPABLE
 
