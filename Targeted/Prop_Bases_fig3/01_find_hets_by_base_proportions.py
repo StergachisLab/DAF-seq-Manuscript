@@ -13,14 +13,14 @@ import numpy as np
 # length from the end of the region to consider (priming regions)
 buffer_len = 25
 
-samples = [{'name':'NAPA', 'reg_chrom':'chr19', 'reg_start':47514488, 'reg_end':47518985, 'bam':'/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1/PS00626.m84046_240619_124816_s1.bc2072.ft.map-pb_corrected_realigned.bam'},
-           {'name':'WASF1', 'reg_chrom':'chr6', 'reg_start':110176895, 'reg_end':110181442, 'bam':'/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1/PS00626.m84046_240619_124816_s1.bc2072.ft.map-pb_corrected_realigned.bam'},
-           {'name':'UBA1', 'reg_chrom':'chrX', 'reg_start':47190561, 'reg_end':47194939, 'bam':'/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/UBA1/PS00685_GM12878_UBA1_m84046_240802_231812_s1.hifi_reads.bc2093.map-pb_corrected_realigned.bam'},
-           {'name':'GM12878_SLC', 'reg_chrom':'chr8', 'reg_start':144415793, 'reg_end':144417939, 'bam':'/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/SLC39A4/GM12878_SLC39A4_PS00686_m84046_240802_231812_s1.hifi_reads.bc2094.map-pb_corrected_realigned.bam'},
-           {'name':'Liver_SLC', 'reg_chrom':'chr8', 'reg_start':144415793, 'reg_end':144417939, 'bam':'/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/SLC39A4/Liver_SLC39A4_PS00680_m84046_240802_231812_s1.hifi_reads.bc2084.map-pb_corrected_realigned.bam'},
-           {'name':'Heart_SLC', 'reg_chrom':'chr8', 'reg_start':144415793, 'reg_end':144417939, 'bam':'/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/SLC39A4/Heart_SLC39A4_PS00681_m84046_240802_231812_s1.hifi_reads.bc2085.map-pb_corrected_realigned.bam'},
-           {'name':'Colon_SLC', 'reg_chrom':'chr8', 'reg_start':144415793, 'reg_end':144417939, 'bam':'/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/SLC39A4/Colon_SLC39A4_PS00682_m84046_240802_231812_s1.hifi_reads.bc2086.map-pb_corrected_realigned.bam'},
-           {'name':'COLO_Mix', 'reg_chrom':'chr17', 'reg_start':19446516, 'reg_end':19450322, 'bam':'/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/COLO_Mix/PS00719_COLO_Region2_m84055_240822_221245_s3.hifi_reads.bc2069.map-pb_corrected_realigned.bam'}]
+samples = [{'name':'NAPA', 'reg_chrom':'chr19', 'reg_start':47514488, 'reg_end':47518985, 'bam':'../data/PS00626.m84046_240619_124816_s1.bc2072.ft.map-pb_corrected_realigned.bam'},
+           {'name':'WASF1', 'reg_chrom':'chr6', 'reg_start':110176895, 'reg_end':110181442, 'bam':'../data/PS00626.m84046_240619_124816_s1.bc2072.ft.map-pb_corrected_realigned.bam'},
+           {'name':'UBA1', 'reg_chrom':'chrX', 'reg_start':47190561, 'reg_end':47194939, 'bam':'../data/PS00685_GM12878_UBA1_m84046_240802_231812_s1.hifi_reads.bc2093.map-pb_corrected_realigned.bam'},
+           {'name':'GM12878_SLC', 'reg_chrom':'chr8', 'reg_start':144415793, 'reg_end':144417939, 'bam':'../data/GM12878_SLC39A4_PS00686_m84046_240802_231812_s1.hifi_reads.bc2094.map-pb_corrected_realigned.bam'},
+           {'name':'Liver_SLC', 'reg_chrom':'chr8', 'reg_start':144415793, 'reg_end':144417939, 'bam':'../data/Liver_SLC39A4_PS00680_m84046_240802_231812_s1.hifi_reads.bc2084.map-pb_corrected_realigned.bam'},
+           {'name':'Heart_SLC', 'reg_chrom':'chr8', 'reg_start':144415793, 'reg_end':144417939, 'bam':'../data/Heart_SLC39A4_PS00681_m84046_240802_231812_s1.hifi_reads.bc2085.map-pb_corrected_realigned.bam'},
+           {'name':'Colon_SLC', 'reg_chrom':'chr8', 'reg_start':144415793, 'reg_end':144417939, 'bam':'../data/Colon_SLC39A4_PS00682_m84046_240802_231812_s1.hifi_reads.bc2086.map-pb_corrected_realigned.bam'},
+           {'name':'COLO_Mix', 'reg_chrom':'chr17', 'reg_start':19446516, 'reg_end':19450322, 'bam':'../data/PS00719_COLO_Region2_m84055_240822_221245_s3.hifi_reads.bc2069.map-pb_corrected_realigned.bam'}]
 
 for s in samples:
     print(f"Getting strand % DA on: {s['name']}.....")
