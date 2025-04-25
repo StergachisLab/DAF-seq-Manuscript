@@ -3,8 +3,8 @@ set -euo pipefail
 
 
 zcat FDR-FIRE-peaks.bed.gz | awk '$NF == "true"' | awk 'BEGIN {OFS="\t"}{ print $1,$2,$3,".",$6/$7,"."}' | bgzip > FIRE-peaks_HG002_pass_coverage.bed.gz
-UNMAP="/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/unreliable_blacklist_highCov_regions_merged.bed"
-AUTO="/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/hg38_autosomes.sizes.bed"
+UNMAP="../phasing/unreliable_blacklist_highCov_regions_merged.bed"
+AUTO="hg38_autosomes.sizes.bed"
 bedtools intersect -v -a FIRE-peaks_HG002_pass_coverage.bed.gz -b $UNMAP | bedtools intersect -a stdin -b $AUTO -u | sort-bed - | bgzip > FIRE-peaks_HG002_noUnreliableCoverage.AutosomesOnly.bed.gz
 
 
