@@ -11,7 +11,7 @@ import os
 # Get single-cell read / haplotype-strand associations
 fiber_dict = dict()
 
-bams = glob("/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/msp_analysis/fibertools_msp/*_consensus_BothStrands_HG38_corrected.haplotagged.m6A_nuc.bam")
+bams = glob("../msp_analysis/fibertools_msp/*_consensus_BothStrands_HG38_corrected.haplotagged.m6A_nuc.bam")
 for b in bams:
     bam = pysam.AlignmentFile(b, "rb")
     sname = os.path.basename(b).split('_')[0]
