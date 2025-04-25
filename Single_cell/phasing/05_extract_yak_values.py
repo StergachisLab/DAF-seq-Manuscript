@@ -3,7 +3,6 @@ import csv
 import os
 
 collapsed_yak = glob('*HG38_corrected.haplotagged.ALL.trioeval.tbl')
-clipped_yak = glob('clipped_seqs/*HG38.haplotagged.ALL.trioeval.tbl')
 
 out_rows = []
 out_rows.append(['sample','read_type','yak_type','rate'])
