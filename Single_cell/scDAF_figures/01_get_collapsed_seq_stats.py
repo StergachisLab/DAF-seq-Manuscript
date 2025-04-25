@@ -26,7 +26,7 @@ def calc_N50(len_list):
 # raw collapsed read stats ------------------------------------------------------------------
 sample_stats = {s:{} for s in samples}
 for s in samples:
-    fastas = glob(f'/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/collapse/consensus_seqs/{s}_*.fa')
+    fastas = glob(f'../collapse/consensus_seqs/{s}_*.fa')
     lengths = []
     for f in fastas:
         with open(f) as fr:
@@ -45,9 +45,7 @@ for s in samples:
     sample_stats[s]['ultra_long_bases'] = sum([i for i in lengths if i >= 100000])
 
 
-# Ran "python /mmfs1/gscratch/stergachislab/swansoe/projects/DddA/seq_stats.py $(ls ./*.bam) -t 30 > read_stats.tbl" for raw seq stats
-
-read_stats = pd.read_csv("/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/data/revision_raw_bams/read_stats.tbl", sep="\t")
+read_stats = pd.read_csv("read_stats.tbl", sep="\t")
 
 read_stats['sample'] = read_stats['file'].str.replace('^./','', regex=True).str.split('_').str[0]
 read_stats = read_stats[read_stats['sample'].isin(samples)]
@@ -62,10 +60,7 @@ for i in range(len(raw_read_bases)):
 
 
 # coverage of the MAPPABLE Genome (hg38) -----------------------------------------------------
-
-# Precomputed inuputs with phasing/mappable_coverage_precompute.sh !!!
-
-cov_dir='/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing'
+cov_dir='../phasing'
 cov_bed = f'{cov_dir}/mappable_coverage_precompute.tsv'
 with open(cov_bed) as fr:
     for line in fr:
@@ -82,7 +77,7 @@ for s in samples:
 
 
 # (Same peaks and coverage regardless of MSP length)
-fire_df = pd.read_csv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/msp_analysis/scDAF_FIRE_actuation_MSP150.tsv', sep="\t") # 150 bp MSP
+fire_df = pd.read_csv('../msp_analysis/scDAF_FIRE_actuation_MSP150.tsv', sep="\t") # 150 bp MSP
 
 for s in samples:
     # FIRE peaks covered
@@ -100,7 +95,7 @@ stat_df.to_csv(out_file, sep="\t", float_format='%.0f', index_label='Cell')
 
 
 # average phasing rate from the four cells
-haplotagged_dir = '/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/haplotagged'
+haplotagged_dir = '../phasing/haplotagged'
 tag_lists = glob(f'{haplotagged_dir}/*HG38_corrected.haplotag_list.txt.gz')
 
 total = 0
@@ -116,7 +111,7 @@ with open('avg_phased_read_prop.txt','w') as fout:
 
 
 # FIRE stats
-fire_df = pd.read_csv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/msp_analysis/scDAF_FIRE_actuation_MSP150.tsv', sep="\t")
+fire_df = pd.read_csv('../msp_analysis/scDAF_FIRE_actuation_MSP150.tsv', sep="\t")
 freq_df = fire_df[['chrom','start','end','prop_acc','bin']]
 
 def check_columns(row):
@@ -145,7 +140,7 @@ freq_df.to_csv('hap_actuation_bins.csv', index=False)
 
 
 # Consensus read lengths
-seq_dir = '/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/collapse/consensus_seqs'
+seq_dir = '../collapse/consensus_seqs'
 fastas = glob(f'{seq_dir}/PS*.fa')
 
 out_rows = []
@@ -163,7 +158,7 @@ with open('consensus_read_lengths.tsv','w') as fw:
 
 
 # Deamination rate by cell
-bam_dir='/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/collapse/consensus_bams'
+bam_dir='../collapse/consensus_bams'
 BAMS = [f'{bam_dir}/{s}_consensus_BothStrands_HG38_corrected.bam' for s in samples]
 
 def da_rate(bam_name):
