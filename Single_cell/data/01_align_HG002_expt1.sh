@@ -1,6 +1,6 @@
 #!/bin/bash
 
-hgFASTA="/gscratch/stergachislab/assemblies/simple-names/hg38.fa"
+hgFASTA="hg38.fa"
 
 BAMS=$(ls ./*.bam)
 
