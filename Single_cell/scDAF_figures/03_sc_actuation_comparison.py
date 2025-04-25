@@ -3,14 +3,14 @@ import numpy as np
 from itertools import combinations
 import csv
 
-fire_df = pd.read_csv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/msp_analysis/scDAF_FIRE_actuation_MSP150.tsv', sep="\t")
+fire_df = pd.read_csv('../msp_analysis/scDAF_FIRE_actuation_MSP150.tsv', sep="\t")
 
 fire_df['ID'] = fire_df['chrom'].astype(str) + ":" + fire_df['start'].astype(str) + "-" + fire_df['end'].astype(str)
 
 # split FIRE peaks into promoter-proximal and promoter-distal
 # assignments made previously using "classify_FIRE_peaks_promoter_distal.py"
 proximal_peaks = set()
-with open('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/msp_analysis/promoter-proximal_FIRE-peaks_HG002_noUnrealiableCov_autosome.txt') as fr:
+with open('../msp_analysis/promoter-proximal_FIRE-peaks_HG002_noUnrealiableCov_autosome.txt') as fr:
     for line in fr:
         proximal_peaks.add(line.strip())
 
