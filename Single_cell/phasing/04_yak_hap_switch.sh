@@ -4,8 +4,8 @@ set -euo pipefail
 
 # Phased "contigs", unphased "contigs", and total "contigs"
 
-FYAK=/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/yak_switching/HG003.father.yak
-MYAK=/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/yak_switching/HG004.mother.yak
+FYAK=HG003.father.yak
+MYAK=HG004.mother.yak
 
 BAMS=$(ls ../haplotagged/PS00*.bam)
 
