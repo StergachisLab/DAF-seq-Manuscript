@@ -284,7 +284,7 @@ library(GenomicAlignments)
 # COLLAPSED Reads filtered by MAPPABLE regoins AND High Coverage Regions
 
 # Raw clipped reads FILTERED ---------------------------------------------
-raw_clipped_BothStrands_FILT_BED <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/PS00756_clipped_FILTERED.bed.gz', col_names = c('chrom','start','end','name'))
+raw_clipped_BothStrands_FILT_BED <- read_tsv('../phasing/PS00756_clipped_FILTERED.bed.gz', col_names = c('chrom','start','end','name'))
 gr_PS00756_clipped_FILT_BothStrands <- makeGRangesFromDataFrame(raw_clipped_BothStrands_FILT_BED, keep.extra.columns=FALSE, ignore.strand = TRUE, seqinfo=NULL,
                                        seqnames.field=c("chrom"),start.field="start",end.field=c("end"), starts.in.df.are.0based=TRUE)
 
@@ -308,7 +308,7 @@ kpAxis(kp, ymax=kp$latest.plot$computed.values$max.coverage, data.panel = 1, num
 dev.off()
 
 
-collapsed_filt_BED <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/PS00756_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
+collapsed_filt_BED <- read_tsv('../phasing/PS00756_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
 granges_collapsed_filt6 <- makeGRangesFromDataFrame(collapsed_filt_BED, keep.extra.columns=FALSE, ignore.strand = TRUE, seqinfo=NULL,
                                        seqnames.field=c("chrom"),start.field="start",end.field=c("end"), starts.in.df.are.0based=TRUE)
 gr_long_collapsed_long6 <- granges_collapsed_filt6[width(granges_collapsed_filt6) >= 10000]
@@ -349,7 +349,7 @@ kp <- kpPlotCoverage(kp, data=gr_long_collapsed_long, data.panel = 1)
 kpAxis(kp, ymax=kp$latest.plot$computed.values$max.coverage, data.panel = 1, numticks=6)
 dev.off()
 
-collapsed_filt_BED <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/PS00756_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
+collapsed_filt_BED <- read_tsv('../phasing/PS00756_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
 granges_collapsed_filt <- makeGRangesFromDataFrame(collapsed_filt_BED, keep.extra.columns=FALSE, ignore.strand = TRUE, seqinfo=NULL, seqnames.field=c("chrom"),start.field="start",end.field=c("end"), starts.in.df.are.0based=TRUE)
 gr_long_collapsed_long <- granges_collapsed_filt[width(granges_collapsed_filt) >= 10000]
 png("figures/PS00756_BothStrandsMerged_Mappable_10Kb_karyo_chr1.png", width = 6400, height = 6400, res = 1200)
@@ -358,7 +358,7 @@ kp <- kpPlotCoverage(kp, data=gr_long_collapsed_long, data.panel = 1)
 kpAxis(kp, ymax=kp$latest.plot$computed.values$max.coverage, data.panel = 1, numticks=6)
 dev.off()
 
-collapsed_filt_BED <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/PS00757_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
+collapsed_filt_BED <- read_tsv('../phasing/PS00757_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
 granges_collapsed_filt <- makeGRangesFromDataFrame(collapsed_filt_BED, keep.extra.columns=FALSE, ignore.strand = TRUE, seqinfo=NULL, seqnames.field=c("chrom"),start.field="start",end.field=c("end"), starts.in.df.are.0based=TRUE)
 gr_long_collapsed_long <- granges_collapsed_filt[width(granges_collapsed_filt) >= 10000]
 png("figures/PS00757_BothStrandsMerged_Mappable_10Kb_karyo_chr1.png", width = 6400, height = 6400, res = 1200)
@@ -367,7 +367,7 @@ kp <- kpPlotCoverage(kp, data=gr_long_collapsed_long, data.panel = 1)
 kpAxis(kp, ymax=kp$latest.plot$computed.values$max.coverage, data.panel = 1, numticks=6)
 dev.off()
 
-collapsed_filt_BED <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/PS00758_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
+collapsed_filt_BED <- read_tsv('../phasing/PS00758_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
 granges_collapsed_filt <- makeGRangesFromDataFrame(collapsed_filt_BED, keep.extra.columns=FALSE, ignore.strand = TRUE, seqinfo=NULL, seqnames.field=c("chrom"),start.field="start",end.field=c("end"), starts.in.df.are.0based=TRUE)
 gr_long_collapsed_long <- granges_collapsed_filt[width(granges_collapsed_filt) >= 10000]
 png("figures/PS00758_BothStrandsMerged_Mappable_10Kb_karyo_chr1.png", width = 6400, height = 6400, res = 1200)
@@ -376,7 +376,7 @@ kp <- kpPlotCoverage(kp, data=gr_long_collapsed_long, data.panel = 1)
 kpAxis(kp, ymax=kp$latest.plot$computed.values$max.coverage, data.panel = 1, numticks=6)
 dev.off()
 
-collapsed_filt_BED <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/PS00867_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
+collapsed_filt_BED <- read_tsv('../phasing/PS00867_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
 granges_collapsed_filt <- makeGRangesFromDataFrame(collapsed_filt_BED, keep.extra.columns=FALSE, ignore.strand = TRUE, seqinfo=NULL, seqnames.field=c("chrom"),start.field="start",end.field=c("end"), starts.in.df.are.0based=TRUE)
 gr_long_collapsed_long <- granges_collapsed_filt[width(granges_collapsed_filt) >= 10000]
 png("figures/PS00867_BothStrandsMerged_Mappable_10Kb_karyo_chr1.png", width = 6400, height = 6400, res = 1200)
@@ -385,7 +385,7 @@ kp <- kpPlotCoverage(kp, data=gr_long_collapsed_long, data.panel = 1)
 kpAxis(kp, ymax=kp$latest.plot$computed.values$max.coverage, data.panel = 1, numticks=6)
 dev.off()
 
-collapsed_filt_BED <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/PS00868_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
+collapsed_filt_BED <- read_tsv('../phasing/PS00868_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
 granges_collapsed_filt <- makeGRangesFromDataFrame(collapsed_filt_BED, keep.extra.columns=FALSE, ignore.strand = TRUE, seqinfo=NULL, seqnames.field=c("chrom"),start.field="start",end.field=c("end"), starts.in.df.are.0based=TRUE)
 gr_long_collapsed_long <- granges_collapsed_filt[width(granges_collapsed_filt) >= 10000]
 png("figures/PS00868_BothStrandsMerged_Mappable_10Kb_karyo_chr1.png", width = 6400, height = 6400, res = 1200)
@@ -394,7 +394,7 @@ kp <- kpPlotCoverage(kp, data=gr_long_collapsed_long, data.panel = 1)
 kpAxis(kp, ymax=kp$latest.plot$computed.values$max.coverage, data.panel = 1, numticks=6)
 dev.off()
 
-collapsed_filt_BED <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/PS00869_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
+collapsed_filt_BED <- read_tsv('../phasing/PS00869_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
 granges_collapsed_filt <- makeGRangesFromDataFrame(collapsed_filt_BED, keep.extra.columns=FALSE, ignore.strand = TRUE, seqinfo=NULL, seqnames.field=c("chrom"),start.field="start",end.field=c("end"), starts.in.df.are.0based=TRUE)
 gr_long_collapsed_long <- granges_collapsed_filt[width(granges_collapsed_filt) >= 10000]
 png("figures/PS00869_BothStrandsMerged_Mappable_10Kb_karyo_chr1.png", width = 6400, height = 6400, res = 1200)
@@ -403,7 +403,7 @@ kp <- kpPlotCoverage(kp, data=gr_long_collapsed_long, data.panel = 1)
 kpAxis(kp, ymax=kp$latest.plot$computed.values$max.coverage, data.panel = 1, numticks=5)
 dev.off()
 
-collapsed_filt_BED <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/PS00870_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
+collapsed_filt_BED <- read_tsv('../phasing/PS00870_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
 granges_collapsed_filt <- makeGRangesFromDataFrame(collapsed_filt_BED, keep.extra.columns=FALSE, ignore.strand = TRUE, seqinfo=NULL, seqnames.field=c("chrom"),start.field="start",end.field=c("end"), starts.in.df.are.0based=TRUE)
 gr_long_collapsed_long <- granges_collapsed_filt[width(granges_collapsed_filt) >= 10000]
 png("figures/PS00870_BothStrandsMerged_Mappable_10Kb_karyo_chr1.png", width = 6400, height = 6400, res = 1200)
@@ -412,7 +412,7 @@ kp <- kpPlotCoverage(kp, data=gr_long_collapsed_long, data.panel = 1)
 kpAxis(kp, ymax=kp$latest.plot$computed.values$max.coverage, data.panel = 1, numticks=6)
 dev.off()
 
-collapsed_filt_BED <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/PS00871_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
+collapsed_filt_BED <- read_tsv('../phasing/PS00871_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
 granges_collapsed_filt <- makeGRangesFromDataFrame(collapsed_filt_BED, keep.extra.columns=FALSE, ignore.strand = TRUE, seqinfo=NULL, seqnames.field=c("chrom"),start.field="start",end.field=c("end"), starts.in.df.are.0based=TRUE)
 gr_long_collapsed_long <- granges_collapsed_filt[width(granges_collapsed_filt) >= 10000]
 png("figures/PS00871_BothStrandsMerged_Mappable_10Kb_karyo_chr1.png", width = 6400, height = 6400, res = 1200)
@@ -421,7 +421,7 @@ kp <- kpPlotCoverage(kp, data=gr_long_collapsed_long, data.panel = 1)
 kpAxis(kp, ymax=kp$latest.plot$computed.values$max.coverage, data.panel = 1, numticks=6)
 dev.off()
 
-collapsed_filt_BED <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/PS00872_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
+collapsed_filt_BED <- read_tsv('../phasing/PS00872_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
 granges_collapsed_filt <- makeGRangesFromDataFrame(collapsed_filt_BED, keep.extra.columns=FALSE, ignore.strand = TRUE, seqinfo=NULL, seqnames.field=c("chrom"),start.field="start",end.field=c("end"), starts.in.df.are.0based=TRUE)
 gr_long_collapsed_long <- granges_collapsed_filt[width(granges_collapsed_filt) >= 10000]
 png("figures/PS00872_BothStrandsMerged_Mappable_10Kb_karyo_chr1.png", width = 6400, height = 6400, res = 1200)
@@ -430,7 +430,7 @@ kp <- kpPlotCoverage(kp, data=gr_long_collapsed_long, data.panel = 1)
 kpAxis(kp, ymax=kp$latest.plot$computed.values$max.coverage, data.panel = 1, numticks=6)
 dev.off()
 
-collapsed_filt_BED <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/PS00873_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
+collapsed_filt_BED <- read_tsv('../phasing/PS00873_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
 granges_collapsed_filt <- makeGRangesFromDataFrame(collapsed_filt_BED, keep.extra.columns=FALSE, ignore.strand = TRUE, seqinfo=NULL, seqnames.field=c("chrom"),start.field="start",end.field=c("end"), starts.in.df.are.0based=TRUE)
 gr_long_collapsed_long <- granges_collapsed_filt[width(granges_collapsed_filt) >= 10000]
 png("figures/PS00873_BothStrandsMerged_Mappable_10Kb_karyo_chr1.png", width = 6400, height = 6400, res = 1200)
@@ -439,7 +439,7 @@ kp <- kpPlotCoverage(kp, data=gr_long_collapsed_long, data.panel = 1)
 kpAxis(kp, ymax=kp$latest.plot$computed.values$max.coverage, data.panel = 1, numticks=5)
 dev.off()
 
-collapsed_filt_BED <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/PS00874_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
+collapsed_filt_BED <- read_tsv('../phasing/PS00874_no_high_STRAND_coverage_subtract.bed.gz', col_names = c('chrom','start','end','name','score','strand'))
 granges_collapsed_filt <- makeGRangesFromDataFrame(collapsed_filt_BED, keep.extra.columns=FALSE, ignore.strand = TRUE, seqinfo=NULL, seqnames.field=c("chrom"),start.field="start",end.field=c("end"), starts.in.df.are.0based=TRUE)
 gr_long_collapsed_long <- granges_collapsed_filt[width(granges_collapsed_filt) >= 10000]
 png("figures/PS00874_BothStrandsMerged_Mappable_10Kb_karyo_chr1.png", width = 6400, height = 6400, res = 1200)
@@ -454,7 +454,7 @@ dev.off()
 # MSP Actuation --------------------------------------------------------------------
 
 # Actuation at FIRE peaks binned by Fiber-seq actuation at different MSP lengths
-msp_150 <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/msp_analysis/scDAF_FIRE_actuation_MSP150.tsv')
+msp_150 <- read_tsv('../msp_analysis/scDAF_FIRE_actuation_MSP150.tsv')
 
 # Filter each peakset for peaks with width +/- 25bp to each MSP cutoff (ex. 175-225bp wide for MSP 200 cutoff)
 msp_150$peak_width <- msp_150$end - msp_150$start
@@ -476,7 +476,7 @@ msp150_bins$prop <- msp150_bins$nMSP / msp150_bins$nCov
 acf_merged <- data.frame(matrix(ncol = 4, nrow = 0))
 colnames(acf_merged) = c('acf','lag','corr','cell')
 for (cn in cell_names){
-  acf_df <- read_tsv(paste0('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/msp_analysis/',cn,'_ft_acf.tsv'), col_names=c('acf','lag','corr'))
+  acf_df <- read_tsv(paste0('../msp_analysis/',cn,'_ft_acf.tsv'), col_names=c('acf','lag','corr'))
   acf_df$cell <- cn
   acf_merged <- rbind(acf_merged, acf_df)
 }
@@ -525,7 +525,7 @@ write.csv(da_rates, "figures/deaminations_per_1Kb_by_cell.csv", row.names = FALS
 
 
 # Correlate mapping % by deamination rate
-perc_mapping <- read_tsv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/data/percent_mapped_aggregated.tsv')
+perc_mapping <- read_tsv('../data/percent_mapped_aggregated.tsv')
 da_rates$Percent_Mapped <- perc_mapping$Percent_Mapped[match(da_rates$Cell, perc_mapping$Sample)]
 da_rates$exact_prop_da <- da_rates$DA_bp/da_rates$Tot_bp
 
@@ -656,7 +656,7 @@ my_ggsave('figures/actuation_perc_promoter_proximal_distal_Fiber-seq.pdf', pFSAc
 
 # Fiber-seq Haplotype Selective peaks -----------------------------------------------------------------------------
 fire_df$ID <- paste0(fire_df$chrom,":",fire_df$start,"-",fire_df$end)
-volcano_df <- read_tsv('/mmfs1/gscratch/stergachislab/mvollger/projects/FIREv2.0/results/HG002/hap1-vs-hap2/hap1-vs-hap2-volcano.tbl.gz')
+volcano_df <- read_tsv('hap1-vs-hap2-volcano.tbl.gz')
 volcano_df$ID <- paste0(volcano_df$'#chrom',":",volcano_df$peak_start,"-",volcano_df$peak_end)
 
 # identify "discordant" peaks within single cells (actuated on H1 but not H2 or visa versa)
