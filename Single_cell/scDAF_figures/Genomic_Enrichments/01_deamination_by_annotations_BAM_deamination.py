@@ -18,7 +18,7 @@ ga_dicts['chrY'] = {}
 min_seq_len = 4000
 read_buff_len = 300 # don't count bases from positions X bp from the ends of the read to avoid double counting collapse failures.
 
-bam_dir = '/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/collapse/consensus_bams'
+bam_dir = '../collapse/consensus_bams'
 bams = glob(f'{bam_dir}/PS*_consensus_BothStrands_HG38_corrected.bam')
 
 for i in range(len(bams)):
