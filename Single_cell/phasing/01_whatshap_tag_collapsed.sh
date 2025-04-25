@@ -1,12 +1,12 @@
 #!/bin/bash
 set -euo pipefail
 
-FASTA="/mmfs1/gscratch/stergachislab/assemblies/simple-names/hg38.fa"
+FASTA="hg38.fa"
 
 # phasing with single VCF
 VCF="analysis-HG002_WGS-4142-deepvariant.phased.vcf.gz"
 
-BAMS=$(ls /mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/collapse/consensus_bams/PS*G38_corrected.bam)
+BAMS=$(ls ../collapse/consensus_bams/PS*G38_corrected.bam)
 
 for b in $BAMS; do
 bname=$(basename $b)
