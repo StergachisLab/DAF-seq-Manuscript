@@ -4,7 +4,7 @@ from itertools import combinations,product
 
 
 
-act_df = pd.read_csv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/figures_daf/scDAF_FIRE_actuation_MSP150_withProximal.tsv', sep="\t")
+act_df = pd.read_csv('../scDAF_figures_daf/scDAF_FIRE_actuation_MSP150_withProximal.tsv', sep="\t")
 
 samples = set()
 for col in act_df.columns:
