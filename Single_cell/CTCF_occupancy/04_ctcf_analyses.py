@@ -10,7 +10,6 @@ ctcf_df = pd.read_csv('ctcf_footprint_codes.csv')
 
 samples = ctcf_df['cell'].unique()
 
-
 # Count the number of occupied CTCF sites per cell (is it different globally)?
 for cell in ctcf_df.groupby('cell'):
     cname = cell[0]
@@ -19,25 +18,6 @@ for cell in ctcf_df.groupby('cell'):
     n_msp = sum(ft_values[2:])
     n_bound = ft_values[2]
     # print(cname, n_span, n_msp, n_bound, n_bound/n_span, n_bound/n_msp)
-
-
-# Does per-cell occupancy correlate with % deamination within the cell?
-da_rate = pd.read_csv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/figures_daf/deamination_rate_by_cell.csv')
-
-da_rate['prop_bound'] = 0
-for cell in ctcf_df.groupby('cell'):
-    cname = cell[0]
-    ft_values = cell[1]['code'].value_counts()
-    n_msp = sum(ft_values[2:])
-    n_bound = ft_values[2]
-    da_rate.loc[da_rate['Cell'] == cname, 'prop_bound'] = n_bound / n_msp
-    
-# Pearson correlation coefficient
-correlation = da_rate['prop_da_both_strands'].corr(da_rate['prop_bound'])
-# print("Correlation:", correlation)
-
-da_rate.to_csv('da_rate_by_prop_bound.csv', index=False)
-
 
 # Create dictionary of haplotype-strand motif calls
 hap_strand = [f'{samp}_H1' for samp in samples] + [f'{samp}_H2' for samp in samples]
@@ -74,7 +54,7 @@ for row in temp_df.iterrows():
 
 
 # Parse ChIA-PET data
-loops = pd.read_csv('ENCODE/GM12878_CTCF_ChIA-PET_Loops_ENCFF780PGS.bedpe.gz', sep="\t", names=['chrom1','start1','end1','chrom2','start2','end2','pet_score'])
+loops = pd.read_csv('ENCFF780PGS.bedpe.gz', sep="\t", names=['chrom1','start1','end1','chrom2','start2','end2','pet_score'])
 loops['m_coord_1'] = loops['chrom1'] + ':' + loops['start1'].astype(str) + ':' + loops['end1'].astype(str)
 loops['m_coord_2'] = loops['chrom2'] + ':' + loops['start2'].astype(str) + ':' + loops['end2'].astype(str)
 
@@ -298,8 +278,8 @@ for loop in loops_shuff.iterrows():
     reg1 = loop[1]['m_coord_1']
     reg2 = loop[1]['m_coord_2']
     if reg1 in reg1_dict_shuff.keys() and reg2 in reg2_dict_shuff.keys():
-        reg1_motifs = sorted([m for m in reg1_dict_shuff[reg1] if fs_dict[m]['prop_act'] >=  min_act]) # filter motifs by FS actuation !!!!!!!!!!!!!!
-        reg2_motifs = sorted([m for m in reg2_dict_shuff[reg2] if fs_dict[m]['prop_act'] >=  min_act]) # filter motifs by FS actuation !!!!!!!!!!!!!!
+        reg1_motifs = sorted([m for m in reg1_dict_shuff[reg1] if fs_dict[m]['prop_act'] >=  min_act]) # filter motifs by FS actuation
+        reg2_motifs = sorted([m for m in reg2_dict_shuff[reg2] if fs_dict[m]['prop_act'] >=  min_act]) # filter motifs by FS actuation
         reg1_strands = [fs_dict[m]['strand'] for m in reg1_motifs]
         reg2_strands = [fs_dict[m]['strand'] for m in reg2_motifs]
         # track loop counts by motif-strand combo
