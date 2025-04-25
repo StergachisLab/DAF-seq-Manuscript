@@ -6,7 +6,7 @@ set -euo pipefail
 OUT_FILE="raw_read_lengths.tsv"
 if [[ -e $OUT_FILE ]]; then rm $OUT_FILE; fi
 
-BAMS=$(ls /gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/data/revision_raw_bams/PS*.bam | grep -v PS0085)
+BAMS=$(ls ../data/PS*.bam)
 
 for B in $BAMS; do
     NAME=$(basename $B | cut -d'_' -f1)
