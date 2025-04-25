@@ -7,7 +7,7 @@ ADD_C=70
 MIN=10
 
 # input is haplotagged BAM
-HAP_BAMS=$(ls /mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/phasing/haplotagged/*HG38_corrected.haplotagged.bam)
+HAP_BAMS=$(ls ../phasing/haplotagged/*HG38_corrected.haplotagged.bam)
 
 LEN=150
 
