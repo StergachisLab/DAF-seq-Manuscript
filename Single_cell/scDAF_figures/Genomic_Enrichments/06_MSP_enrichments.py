@@ -109,7 +109,7 @@ with open('FS_2kb_tss_counts_FIRE_peaks_Stranded.csv','w') as fw:
 # --------------------------------------------------------------------------------------------------------------
 
 # Enrichment over all FIRE peaks (not Just TSSs)
-fire_peaks = "/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/msp_analysis/FIRE-peaks_HG002_noUnreliableCoverage.AutosomesOnly.bed.gz"
+fire_peaks = "../msp_analysis/FIRE-peaks_HG002_noUnreliableCoverage.AutosomesOnly.bed.gz"
 
 fire_pos = dict()
 with gzip.open(fire_peaks, 'rt') as fr:
