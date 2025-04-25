@@ -34,5 +34,5 @@ perc_by_tissue <- ggbarplot(dup_rates, x = "sample", y = "dup_rate", orientation
     xlab("Sample") + ylab('Percent Duplicates') +
     scale_fill_brewer(palette="Set1")
     
-my_ggsave('percent_dup_by_tissue_pbmarkdup.pdf', perc_by_tissue)
+my_ggsave('../figures/percent_dup_by_tissue_pbmarkdup.pdf', perc_by_tissue)
 
