@@ -29,6 +29,5 @@ https://s3-us-west-1.amazonaws.com/stergachis-manuscript-data/2024/Vollger_et_al
 
 
 ## Accessory Data
-Data files used in analyses that were not included in the SRA upload are available at the Zenodo repository below.
-10.5281/zenodo.15391983
+Data files used in analyses that were not included in the SRA upload are available at the following Zenodo repository: 10.5281/zenodo.15391983
 
