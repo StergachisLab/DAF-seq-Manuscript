@@ -30,7 +30,7 @@ FS_props <- read_csv("saturation_Fiber-seq_NAPA_m6a_ref_coord_props.csv")
 FS_props$assay <- "Fiber-seq"
 
 # 4 uM for 10 minutes
-DAF_props <- read_tsv("/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1/qc_plots/prop_da_titration_NAPA.tsv")
+DAF_props <- read_tsv("../NAPA/qc_plots/prop_da_titration_NAPA.tsv")
 ft_pos <- read_csv('napa_footprint_positions.txt', col_names = c('position'))
 NAPA_prom_DAF <- DAF_props %>% select(position, PS00626) %>% filter(position >= 47515063, position <= 47515660, !position %in% ft_pos$position) %>% rename(ref_coord = position, m6a_prop = PS00626)
 NAPA_prom_DAF$sample <- "Targeted DAF-seq (GM12878)"
