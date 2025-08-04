@@ -37,7 +37,7 @@ idx = iso_df[iso_df['exp_bin'] > 10].index
 iso_df.loc[idx, 'exp_bin'] = 11
 iso_df['ID'] = iso_df["chrom"].astype(str) + ':' + iso_df["start"].astype(str) + '-' + iso_df["end"].astype(str)
 
-daf_df = pd.read_csv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/figures_daf/scDAF_FIRE_actuation_MSP150_withProximal.tsv', delimiter="\t")
+daf_df = pd.read_csv('../scDAF_figures/scDAF_FIRE_actuation_MSP150_withProximal.tsv', delimiter="\t")
 daf_df_filt = daf_df[daf_df['is_proximal'] == True]
 
 # Map 'value' from df1 to df2 based on 'key'
