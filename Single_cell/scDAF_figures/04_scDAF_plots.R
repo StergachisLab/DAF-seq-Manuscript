@@ -631,7 +631,7 @@ my_ggsave('figures/acc_bin_violin.pdf', acc_bin_violin)
 
 # Jaccard dist bins by HG002 ISO-seq expression counts ---------------------------
 
-exp_df <- read_tsv('isoseq/jaccard_acc_proximal_binned_by_expression.tsv')
+exp_df <- read_tsv('../isoseq/jaccard_acc_proximal_binned_by_expression.tsv')
 acc_proximal_Expression_bin_violin <- ggviolin(exp_df, "Bin", "Jaccard_Dist", fill = "Bin", draw_quantiles = 0.5) +
                         ylim(0,1) +
                         scale_fill_manual(values = spectral_13) +
