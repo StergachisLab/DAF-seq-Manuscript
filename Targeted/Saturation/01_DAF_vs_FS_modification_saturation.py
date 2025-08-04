@@ -3,14 +3,14 @@ import csv
 import os
 
 
-BAMS = ["/mmfs1/gscratch/stergachislab/FIRE/results/GM12878/GM12878-fire-v0.1.1-filtered.cram",
-        "/mmfs1/gscratch/stergachislab/FIRE/results/CHM13/CHM13-fire-v0.1-filtered.cram",
-        "/mmfs1/gscratch/stergachislab/mvollger/projects/FIREv2.0/results/HG002/fire/HG002.fire.cram",
-        "/mmfs1/gscratch/stergachislab/userprod/production/fibertools-pipeline/PacBio-Fiber-seq/PS30743/hg38/results/pipelines/fire-run/results/PS30743/PS30743-fire-v0.1.2-filtered.cram"]
+BAMS = ["../data/GM12878-fire-v0.1.1-filtered.cram",
+        "../data/CHM13-fire-v0.1-filtered.cram",
+        "../data/HG002.fire.cram",
+        "../data/PS30743-fire-v0.1.2-filtered.cram"]
 
 FS_SAMPLES=["PS00272","PS00321","PS00327","PS00381","PS00382","PS00383","PS00384","ST001-liver","ST001-lung","PS00338_COLO829BL_1","PS00356_COLO829BL_2","COLO_T_2_PS00_418_451_488"]
 for sname in FS_SAMPLES:
-    BAMS.append(f"/mmfs1/gscratch/stergachislab/mvollger/projects/FIREv2.0/results/{sname}/fire/{sname}.fire.cram")
+    BAMS.append(f"../data/{sname}/fire/{sname}.fire.cram")
 
 
 # NAPA
@@ -19,7 +19,7 @@ reg_start = 47515063
 reg_end = 47515660
 
 # NAPA promoter footprint regions for excluding bases
-ft_bam = "/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/PCR_Dev/Napa_WASF1/footprinting/NAPA/merged_both_strands.bed"
+ft_bam = "../NAPA/footprinting/NAPA/merged_both_strands.bed"
 ft_pos = set()
 with open(ft_bam) as fr:
     for line in fr:
