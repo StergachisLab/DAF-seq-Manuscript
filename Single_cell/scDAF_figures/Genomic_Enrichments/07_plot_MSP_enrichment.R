@@ -63,7 +63,7 @@ my_ggsave("figures/tss_enrichment_DAF.pdf", DAF_line_tss_enrichment_FIRE_strande
 
 
 # correlation between scDAF-seq TSS enrichment and deamination rate
-da_rates <- read_csv('/mmfs1/gscratch/stergachislab/swansoe/projects/DddA/single_cell/expt1_HG002_FACS/figures_daf/deamination_rate_by_cell.csv')
+da_rates <- read_csv('../deamination_rate_by_cell.csv')
 daf_max <- DAF_only %>% group_by(sample) %>% summarize(m = max(enrichment)) %>% rename(Cell = sample) # Max enrichment score
 tss_da <- merge(da_rates, daf_max)
 
@@ -90,23 +90,4 @@ tss_FS_corr <- ggscatter(tss_fs, "prop", "m", add = "reg.line") +
  theme_bw(10) +
  theme(panel.grid.major.x = element_blank())
 my_ggsave('figures/tss_enrichment_by_FS_m6A_correlation.pdf', tss_FS_corr, width = 4, height=4)
-
-
-
-
-# ATAC_only %>% group_by(sample) %>% summarize(m = max(enrichment))
-
-
-# ka <- enrichments3 %>% filter(position == -1000)
-# kd <- DAF_only %>% filter(position == -1000)
-
-# ma <- enrichments3 %>% group_by(sample) %>% summarize(m = max(enrichment))
-# md <- DAF_only %>% group_by(sample) %>% summarize(m = max(enrichment))
-
-# ma$m / ka$enrichment
-# md$m / kd$enrichment
-
-
-# tss_grid <- plot_grid(scATAC_line_tss_enrichment_FIRE_stranded, DAF_line_tss_enrichment_FIRE_stranded, GM12878_line_tss_enrichment_FIRE_stranded, K562_line_tss_enrichment_FIRE_stranded, CHM13_line_tss_enrichment_FIRE_stranded, HG002_line_tss_enrichment_FIRE_stranded, nrow=2)
-# ggsave("tss_enrichment_FIRE_stranded_DAF_vs_FS_vs_scATAC.pdf", tss_grid, width = 12, height = 12)
 
