@@ -119,17 +119,17 @@ for sname in DAF_samples:
 ATAC_samples = ['scATAC_GM12878','scATAC_K562','scATAC_Liver','scATAC_Colon','scATAC_Lung','scATAC_Thyroid','scATAC_CD8+','OMNI-ATAC_K562','OMNI-ATAC_GM12878-repA']
 for sname in ATAC_samples:
     tss_pos = []
-    with open(f"ATAC_REV2/{sname}_gencodev45_Ensembl_canonical_TSS_PLUS_Strand.bed") as fr:
+    with open(f"../../data/{sname}_gencodev45_Ensembl_canonical_TSS_PLUS_Strand.bed") as fr:
         reader = csv.reader(fr, delimiter="\t")
         for line in reader:
             tss_pos.append(':'.join([line[0],line[1]]))
     tss_neg = []
-    with open(f"ATAC_REV2/{sname}_gencodev45_Ensembl_canonical_TSS_MINUS_Strand.bed") as fr:
+    with open(f"../../data/{sname}_gencodev45_Ensembl_canonical_TSS_MINUS_Strand.bed") as fr:
         reader = csv.reader(fr, delimiter="\t")
         for line in reader:
             tss_neg.append(':'.join([line[0],line[1]]))
     cov_dict_pos = {}
-    with open(f"ATAC_REV2/{sname}_tss_PLUS_2kb_MSPs_ATAC_peaks.bg") as fr:
+    with open(f"../../data/{sname}_tss_PLUS_2kb_MSPs_ATAC_peaks.bg") as fr:
         reader = csv.reader(fr, delimiter="\t")
         for line in reader:
             chrom = line[0]
@@ -138,7 +138,7 @@ for sname in ATAC_samples:
                 key = ':'.join([chrom,str(i)])
                 cov_dict_pos[key] = cov
     cov_dict_neg = {}
-    with open(f"ATAC_REV2/{sname}_tss_MINUS_2kb_MSPs_ATAC_peaks.bg") as fr:
+    with open(f"../../data/{sname}_tss_MINUS_2kb_MSPs_ATAC_peaks.bg") as fr:
         reader = csv.reader(fr, delimiter="\t")
         for line in reader:
             chrom = line[0]
