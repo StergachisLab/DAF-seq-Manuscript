@@ -19,7 +19,7 @@ The expected order of UBA1 analyses is alignment and preprocessing, followed by 
 ## Single Cell
 Single cell analyses are organized by folder and are expected to be processed in the following order: data, collapse, phasing, msp_analysis, CTCF_occupancy, msp_codependency, scDAF_figures.
 
-Fiber-seq data for HG002 and GM12878 can be downloaded from the links below. HG002FIRE peaks are required for scDAF-seq chromatin actuation analyses.
+Fiber-seq data for HG002 and GM12878 can be downloaded from the links below. HG002 FIRE peaks are required for scDAF-seq chromatin actuation analyses.
 
 https://s3-us-west-1.amazonaws.com/stergachis-manuscript-data/index.html?prefix=2024/Vollger_et_al/FIRE/HG002/
 
