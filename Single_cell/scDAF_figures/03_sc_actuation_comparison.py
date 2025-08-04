@@ -178,3 +178,32 @@ for samp in samples:
 with open('percent_peaks_actuated_per_cell_anyHap.txt','w') as fw:
     fw.write(f'Inactive,Actuated,Proportion\n')
     fw.write(f'{cov_only},{cell_act},{cell_act/(cell_act+cov_only)}\n')
+
+
+# Accessible landscapes by actuation bins
+
+def actuation_jaccard_dist_bins(s1, s2, bin):
+    bin_df = fire_df[fire_df['bin'] == float(bin)]
+    h1_df = bin_df[(bin_df[f'{s1}_H1'] >= 0) & (bin_df[f'{s2}_H1'] >= 0)]
+    s1_act_H1 = set([f'H1_{idx}' for idx in h1_df[h1_df[f'{s1}_H1'] > 0].index])
+    s2_act_H1 = set([f'H1_{idx}' for idx in h1_df[h1_df[f'{s2}_H1'] > 0].index])
+    h2_df = bin_df[(bin_df[f'{s1}_H2'] >= 0) & (bin_df[f'{s2}_H2'] >= 0)]
+    s1_act_H2 = set([f'H2_{idx}' for idx in h2_df[h2_df[f'{s1}_H2'] > 0].index])
+    s2_act_H2 = set([f'H2_{idx}' for idx in h2_df[h2_df[f'{s2}_H2'] > 0].index])
+    # merge datapoint (both haplotypes)
+    s1_act_all = s1_act_H1.union(s1_act_H2)
+    s2_act_all = s2_act_H1.union(s2_act_H2)
+    distance = 1 - jaccard_similarity(s1_act_all, s2_act_all)
+    return(distance, len(s1_act_all.union(s2_act_all)))
+
+out_rows_bin = []
+out_rows_bin.append(['Cell1','Cell2','Jaccard_Dist','Bin','n_items'])
+for b in range(1,10):
+    for combo in combinations(samples, 2):
+        dist,n = actuation_jaccard_dist_bins(combo[0], combo[1], b)
+        out_rows_bin.append([combo[0], combo[1], dist, b, n])
+
+with open('jaccard_acc_binned.tsv','w') as fout:
+    writer = csv.writer(fout, delimiter="\t")
+    for row in out_rows_bin:
+        writer.writerow(row)
