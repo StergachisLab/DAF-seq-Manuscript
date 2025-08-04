@@ -618,7 +618,7 @@ prop_act_proximal <- read_tsv('prop_actuation_proximal_vs_distal_by_cell.tsv')
 
 pActuationByProximal_violin <- ggviolin(prop_act_proximal, "is_proximal", "prop", fill = "is_proximal",
                           palette = c("#00AFBB", "#E7B800"), position = position_dodge(1), add = "boxplot", add.params = list(fill = "white")) +
-                          scale_y_continuous(labels = scales::percent, limits=c(0.2,0.6)) +
+                          scale_y_continuous(labels = scales::percent, limits=c(0.2,1.0)) +
                           stat_compare_means(aes(group = is_proximal, label = after_stat(p.format)), method = "t.test") +
                           theme_bw() +
                           ylab("scDAF-seq Percent Actuation") + xlab("Promoter-distal vs. Promoter-proximal FIRE Peaks")
