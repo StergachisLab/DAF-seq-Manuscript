@@ -150,10 +150,47 @@ my_ggsave('figures/cluster6_composition_with_hap_GA.pdf', sub_clust_hap_bar_GA)
 
 
 
+
+# Sub Cluster 6 Liver Conditional Codependency ----------------------------------------------------------------------------
+df_raw <- read_tsv("codependency_promoter/conditional_codependency_graphs_raw_clust6_Liver_H1_1-2-3-4-5.tsv")
+df_raw <- df_raw %>% filter(peak_omitted != "baseline")
+df_raw$peak_omitted <- as.factor(df_raw$peak_omitted)
+bar_raw <- ggplot(data=df_raw, aes(x=reorder(peak_omitted, -codep_ratio), y=codep_ratio, fill=peak_omitted)) +
+  geom_bar(stat="identity") +
+  theme_minimal() +
+  theme(axis.line = element_line(color='black'),
+        plot.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank()) +
+  scale_fill_brewer(palette="Dark2") +
+  xlab("Peak Omitted from Graph") +
+  ylab("Codependency Ratio") +
+  theme(legend.position="none")
+ggsave("figures/conditional_codep_raw_bar_Clust6_Liver_H1_1-2-3-4-5.png", bar_raw)
+
+df_raw <- read_tsv("codependency_promoter/conditional_codependency_graphs_raw_clust6_Liver_H2_1-2-3-4-5.tsv")
+df_raw <- df_raw %>% filter(peak_omitted != "baseline")
+df_raw$peak_omitted <- as.factor(df_raw$peak_omitted)
+bar_raw <- ggplot(data=df_raw, aes(x=reorder(peak_omitted, -codep_ratio), y=codep_ratio, fill=peak_omitted)) +
+  geom_bar(stat="identity") +
+  theme_minimal() +
+  theme(axis.line = element_line(color='black'),
+        plot.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank()) +
+  xlab("Peak Omitted from Graph") +
+  ylab("Codependency Ratio") +
+  theme(legend.position="none")
+ggsave("figures/conditional_codep_raw_bar_Clust6_Liver_H2_1-2-3-4-5.png", bar_raw)
+
+
 # module usage plots -------------------------------------------
 
 z_df_h1 <- read.csv('codependency_promoter/clust6_msp_df_Liver_H1.csv', row.names=1)
 z_df_h2 <- read.csv('codependency_promoter/clust6_msp_df_Liver_H2.csv', row.names=1)
+
 z_df_h1$rsum <- z_df_h1 %>% select('X1':'X5') %>% rowSums()
 z_df_h2$rsum <- z_df_h2 %>% select('X1':'X5') %>% rowSums()
 
@@ -444,4 +481,94 @@ mod4_only_on_bar_ALL <- ggbarplot(mod23_merged_all %>% filter(n_acc == 4), "hap"
   ggtitle("Module occupancy by N modules bound")
 
 my_ggsave("figures/four_modules_on_bar_bothHaps.pdf", mod4_only_on_bar_ALL)
+
+
+
+# Hypothesis test of Cluster 6 (Cluster 1 in the figure) composition for Liver. Null is H1 == H2, one-sided ------------------------------------------------------
+tot_clustered_H1 <- cluster_raw_counts_hap_merged_GA %>% filter(tissue == "Liver_H1") %>% select(count) %>% sum()
+tot_clustered_H2 <- cluster_raw_counts_hap_merged_GA %>% filter(tissue == "Liver_H2") %>% select(count) %>% sum()
+clust_6_H1 <- cluster_raw_counts_hap_merged_GA %>% filter(tissue == "Liver_H1", cluster == 6) %>% select(count) %>% sum()
+clust_6_H2 <- cluster_raw_counts_hap_merged_GA %>% filter(tissue == "Liver_H2", cluster == 6) %>% select(count) %>% sum()
+
+# H1 successes, H1 failures, H2 successes, H2 failures
+fisher.test(matrix(c(clust_6_H1, tot_clustered_H1-clust_6_H1, clust_6_H2, tot_clustered_H2-clust_6_H2), nrow=2), alternative="less") # p-value < 2.2e-16
+
+
+# Hypothesis test of sub-cluster 6 (Cluster 1.7 in the figure) composition for Liver. Null is H1 == H2, one-sided ------------------------------------------------------
+sub_tot_clustered_H1 <- merged_hap_counts_sub %>% select(Liver_H1) %>% sum()
+sub_tot_clustered_H2 <- merged_hap_counts_sub %>% select(Liver_H2) %>% sum()
+sub_clust_6_H1 <- merged_hap_counts_sub %>% filter(cluster == 6) %>% select(Liver_H1) %>% sum()
+sub_clust_6_H2 <- merged_hap_counts_sub %>% filter(cluster == 6) %>% select(Liver_H2) %>% sum()
+
+# One-sided Fisher's exact test
+fisher.test(matrix(c(sub_clust_6_H1, sub_tot_clustered_H1-sub_clust_6_H1, sub_clust_6_H2, sub_tot_clustered_H2-sub_clust_6_H2), nrow=2), alternative="less") # p-value 0.001158
+
+
+
+
+# Specifically, clusters 2, 3, and 7 (4, 5, and 6 in Figure 4) which consist of variably positioned nucleosome arrays, were selective to reads from lymphoblastoid cells. ------------------------
+clust_2_Liv <- cluster_counts %>% filter(cluster == 2) %>% select(num_Liver) %>% sum()
+clust_2_GM <- cluster_counts %>% filter(cluster == 2) %>% select(num_GM12878) %>% sum()
+clust_3_Liv <- cluster_counts %>% filter(cluster == 3) %>% select(num_Liver) %>% sum()
+clust_3_GM <- cluster_counts %>% filter(cluster == 3) %>% select(num_GM12878) %>% sum()
+clust_7_Liv <- cluster_counts %>% filter(cluster == 7) %>% select(num_Liver) %>% sum()
+clust_7_GM <- cluster_counts %>% filter(cluster == 7) %>% select(num_GM12878) %>% sum()
+
+tot_clustered_Liv <- sum(cluster_counts$num_Liver)
+tot_clustered_GM <- sum(cluster_counts$num_GM12878)
+
+fisher.test(matrix(c(clust_2_Liv, tot_clustered_Liv-clust_2_Liv, clust_2_GM, tot_clustered_GM-clust_2_GM), nrow=2), alternative="less") # p-value < 2.2e-16
+fisher.test(matrix(c(clust_3_Liv, tot_clustered_Liv-clust_3_Liv, clust_3_GM, tot_clustered_GM-clust_3_GM), nrow=2), alternative="less") # p-value < 2.2e-16
+fisher.test(matrix(c(clust_7_Liv, tot_clustered_Liv-clust_7_Liv, clust_7_GM, tot_clustered_GM-clust_7_GM), nrow=2), alternative="less") # p-value < 2.2e-16
+
+
+
+# In contrast, clusters 4 and 5 (2 and 3 in Figure 4), have a preference for liver reads from the rs2280838-C haplotype
+clust_4_H1 <- cluster_raw_counts_hap_merged_GA %>% filter(tissue == "Liver_H1", cluster == 4) %>% select(count) %>% sum()
+clust_4_H2 <- cluster_raw_counts_hap_merged_GA %>% filter(tissue == "Liver_H2", cluster == 4) %>% select(count) %>% sum()
+clust_5_H1 <- cluster_raw_counts_hap_merged_GA %>% filter(tissue == "Liver_H1", cluster == 5) %>% select(count) %>% sum()
+clust_5_H2 <- cluster_raw_counts_hap_merged_GA %>% filter(tissue == "Liver_H2", cluster == 5) %>% select(count) %>% sum()
+
+fisher.test(matrix(c(clust_4_H1, tot_clustered_H1 - clust_4_H1, clust_4_H2, tot_clustered_H2 - clust_4_H2), nrow=2), alternative="greater") # p-value < 2.2e-16
+fisher.test(matrix(c(clust_5_H1, tot_clustered_H1 - clust_5_H1, clust_5_H2, tot_clustered_H2 - clust_5_H2), nrow=2), alternative="greater") # p-value < 2.2e-16
+
+
+# Notably, rs2280838-C had a higher proportion of fibers with 0 modules actuated compared to rs2280838-T, corresponding to a closed chromatin state which is consistent with reduced expression from the rs2280838-C allele.
+no_mods_H1 <- nrow(z_df_h1 %>% filter(rsum == 0))
+no_mods_H2 <- nrow(z_df_h2 %>% filter(rsum == 0))
+
+fisher.test(matrix(c(no_mods_H1, nrow(z_df_h1) - no_mods_H1, no_mods_H2, nrow(z_df_h2) - no_mods_H2), nrow=2), alternative="greater") # p-value < 2.2e-16
+
+
+# For the 1-module actuated state, module C was preferentially actuated in rs2280838-T fibers (59.7%)
+one_mod_H1 <- z_df_h1 %>% filter(rsum == 1)
+one_mod_H2 <- z_df_h2 %>% filter(rsum == 1)
+one_mod_C_H1 <- one_mod_H1 %>% filter(X3 == 1)
+one_mod_C_H2 <- one_mod_H2 %>% filter(X3 == 1)
+one_mod_B_H1 <- one_mod_H1 %>% filter(X2 == 1)
+one_mod_E_H1 <- one_mod_H2 %>% filter(X5 == 1)
+
+
+one_mod_C_H1_n <- nrow(one_mod_C_H1)
+one_mod_C_H2_n <- nrow(one_mod_C_H2)
+
+fisher.test(matrix(c(one_mod_C_H1_n, nrow(one_mod_H1) - one_mod_C_H1_n, one_mod_C_H2_n, nrow(one_mod_H2) - one_mod_C_H2_n), nrow=2), alternative="less") # p-value = 5.383e-10
+
+
+# whereas modules B, C, or E were similarly actuated in rs2280838-C fibers (Fig. 4e) (30%, 31%, 30%)
+nrow(one_mod_B_H1)/nrow(one_mod_H1)
+nrow(one_mod_C_H1)/nrow(one_mod_H1)
+nrow(one_mod_E_H1)/nrow(one_mod_H1)
+
+# In contrast, the specific combinations of modules actuated in the 2-and 3-module bound states were more similar between haplotypes and largely included actuation of module C (two module 69% & 87%, three module 95% & 91%)
+two_mod_H1 <- z_df_h1 %>% filter(rsum == 2)
+two_mod_H2 <- z_df_h2 %>% filter(rsum == 2)
+three_mod_H1 <- z_df_h1 %>% filter(rsum == 3)
+three_mod_H2 <- z_df_h2 %>% filter(rsum == 3)
+
+nrow(two_mod_H1 %>% filter(X3 == 1)) / nrow(two_mod_H1)
+nrow(two_mod_H2 %>% filter(X3 == 1)) / nrow(two_mod_H2)
+nrow(three_mod_H1 %>% filter(X3 == 1)) / nrow(three_mod_H1)
+nrow(three_mod_H2 %>% filter(X3 == 1)) / nrow(three_mod_H2)
+
 
