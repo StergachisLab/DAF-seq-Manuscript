@@ -84,14 +84,29 @@ ggsave("figures/codep_grid_log2.pdf", codep_grid_log2, height = 8, width = 10)
 bin_names <- sort(unique(same_vs_opp_df$bin_log2))
 
 p_values <- c()
+t_test_n <- c()
+test_stats <- c()
+t_deg_freedon <- c()
+CI_1 <- c()
+CI_2 <- c()
 for (b in bin_names){
    same_vals <- same_vs_opp_df %>% filter(bin_log2 == b, hap == "Same") %>% select(score)
    opp_vals <- same_vs_opp_df %>% filter(bin_log2 == b, hap == "Opposite") %>% select(score)
    t <- t.test(same_vals, opp_vals, alternative = "greater")
+   n <- nrow(same_vals) + nrow(opp_vals)
+   t_stat <- t$statistic
+   tdf <- t$parameter
+   CI1 <- t$conf.int[1]
+   CI2 <- t$conf.int[2]
    p_values <- c(p_values, t$p.value)
+   t_test_n <- c(t_test_n, n)
+   test_stats <- c(test_stats, t_stat)
+   t_deg_freedon <- c(t_deg_freedon, tdf)
+   CI_1 <- c(CI_1, CI1)
+   CI_2 <- c(CI_2, CI2)
 }
 
-codep_p_values <- data.frame(bin = bin_names, p_values = p_values)
+codep_p_values <- data.frame(bin = bin_names, p_values = p_values, n = t_test_n, t_statistic = test_stats, degrees_of_freedom = t_deg_freedon, confidence_interval_95_lower = CI_1, confidence_interval_95_upper = CI_2)
 write_csv(codep_p_values, "msp_codependency_by_hap_t-test.csv")
 
 
