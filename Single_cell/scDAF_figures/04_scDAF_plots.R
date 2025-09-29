@@ -11,7 +11,6 @@ library(data.table)
 library(tools)
 library(ggrepel)
 library(ggbeeswarm)
-library(paletteer)
 
 
 my_ggsave <- function(file, ...){
@@ -605,6 +604,19 @@ jaccard_violin <- ggviolin(jaccard_dist_df, "Group3", "Jaccard_Dist", color = "T
                         theme_bw()
 my_ggsave('figures/jaccard_dist_actuation_violin.pdf', jaccard_violin, width = 8, height = 5)
 
+# T-tests
+c1 <- jaccard_dist_df %>% filter(Type == "Within Cell", Group3 == "Overall")
+c2 <- jaccard_dist_df %>% filter(Type == "Same Hap", Group3 == "Overall")
+t.test(c1$Jaccard_Dist, c2$Jaccard_Dist)
+
+c1 <- jaccard_dist_df %>% filter(Type == "Within Cell", Group3 == "Distal")
+c2 <- jaccard_dist_df %>% filter(Type == "Same Hap", Group3 == "Distal")
+t.test(c1$Jaccard_Dist, c2$Jaccard_Dist)
+
+c1 <- jaccard_dist_df %>% filter(Type == "Within Cell", Group3 == "Proximal")
+c2 <- jaccard_dist_df %>% filter(Type == "Same Hap", Group3 == "Proximal")
+t.test(c1$Jaccard_Dist, c2$Jaccard_Dist)
+
 
 my_comparisons <- list(c("Proximal", "Distal"), c("Proximal", "Overall"), c("Distal", "Overall"))
 jaccard_violin_no_Opp <- ggviolin(jaccard_dist_df %>% filter(Opposite == FALSE, WithinCell == FALSE), "Group", "Jaccard_Dist", fill = "Group", palette = c("#00AFBB", "#E7B800", "#FC4E07"),) +
@@ -614,32 +626,6 @@ jaccard_violin_no_Opp <- ggviolin(jaccard_dist_df %>% filter(Opposite == FALSE, 
 my_ggsave('figures/jaccard_dist_actuation_violin_noOpposite.pdf', jaccard_violin_no_Opp, width = 8, height = 5)
 
 
-spectral_9 <- rev(c(paletteer_c("grDevices::Spectral", 9)))
-spectral_13 <- rev(c(paletteer_c("grDevices::Spectral", 13)))
-
-acc_bin <- read_tsv('jaccard_acc_binned.tsv')
-acc_bin$Bin <- factor(acc_bin$Bin, levels=c(1:9))
-acc_bin_violin <- ggviolin(acc_bin, "Bin", "Jaccard_Dist", fill = "Bin", draw_quantiles = 0.5) +
-                        scale_x_discrete(labels = c("10-20%","20-30%","30-40%","40-50%","50-60%","60-70%","70-80%","80-90%","90-100%")) +
-                        scale_fill_manual(values = spectral_9) +
-                        ylim(0,1) +
-                        theme_bw() +
-                        theme(legend.position = "none") +
-                        ggtitle("FIRE peaks by Fiber-seq actuation") + xlab("Fiber-seq Actuation Bin") + ylab("Jaccard Distance")
-my_ggsave('figures/acc_bin_violin.pdf', acc_bin_violin)
-
-
-# Jaccard dist bins by HG002 ISO-seq expression counts ---------------------------
-
-exp_df <- read_tsv('../isoseq/jaccard_acc_proximal_binned_by_expression.tsv')
-acc_proximal_Expression_bin_violin <- ggviolin(exp_df, "Bin", "Jaccard_Dist", fill = "Bin", draw_quantiles = 0.5) +
-                        ylim(0,1) +
-                        scale_fill_manual(values = spectral_13) +
-                        theme_bw() +
-                        theme(legend.position = "none") +
-                        ggtitle("Promoter-proximal FIRE peaks by HG002 Full-length Transcript Counts") + xlab("log2 Gene Expression Bin") + ylab("Jaccard Distance")
-my_ggsave('figures/DAF_Jaccard_by_expression_bins_violins.pdf', acc_proximal_Expression_bin_violin, width = 8, height = 6)
-
 
 
 # % actuation --> promoter-proximal vs promoter-distal
@@ -647,11 +633,16 @@ prop_act_proximal <- read_tsv('prop_actuation_proximal_vs_distal_by_cell.tsv')
 
 pActuationByProximal_violin <- ggviolin(prop_act_proximal, "is_proximal", "prop", fill = "is_proximal",
                           palette = c("#00AFBB", "#E7B800"), position = position_dodge(1), add = "boxplot", add.params = list(fill = "white")) +
-                          scale_y_continuous(labels = scales::percent, limits=c(0.2,0.6)) +
+                          scale_y_continuous(labels = scales::percent, limits=c(0.2,1.0)) +
                           stat_compare_means(aes(group = is_proximal, label = after_stat(p.format)), method = "t.test") +
                           theme_bw() +
                           ylab("scDAF-seq Percent Actuation") + xlab("Promoter-distal vs. Promoter-proximal FIRE Peaks")
 my_ggsave('figures/actuation_perc_promoter_proximal_distal_violin.pdf', pActuationByProximal_violin)
+
+
+
+
+
 
 
 # Fiber-seq % actuation by proximal
